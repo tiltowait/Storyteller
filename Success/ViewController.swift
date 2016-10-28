@@ -38,25 +38,37 @@ class ViewController: NSViewController {
     }
     
     func displayRolls(rolls: [Int]) {
-        var output = ""
+        let output = NSMutableAttributedString(string: "", attributes: nil)
         var current = 1
         
         for roll in rolls {
-            output = "\(output)\(roll)"
+            var attribute = [String: Any]()
+            switch roll {
+            case 1:
+                attribute = [ NSForegroundColorAttributeName: NSColor.red ]
+            case 10:
+                attribute = [ NSForegroundColorAttributeName: NSColor.green ]
+            default:
+                break
+            }
+            
+            output.append(NSAttributedString(string: "\(roll)", attributes: attribute))
             if current < 8 {
-                output = "\(output)\t"
+                output.append(NSAttributedString(string: "\t"))
+                //output = "\(output)\t"
             }
             else {
-                output = "\(output)\n"
+                output.append(NSAttributedString(string: "\n"))
+                //output = "\(output)\n"
                 current = 1
             }
             current += 1
         }
-        self.rollView.stringValue = output
+        self.rollView.attributedStringValue = output
     }
     
     func calculateSuccesses(rolls: [Int]) {
-        var finalOutput = ""
+        let finalOutput = NSMutableAttributedString(string: "")
         var numTens = 0
         
         for roll in rolls {
@@ -79,30 +91,28 @@ class ViewController: NSViewController {
             }
             
             let specialtySuccesses = successes + numTens
-            var output = "\(difficulty):"
+            let output = NSMutableAttributedString(string: "\(difficulty):")
             
             if successes == 0 && botches >= 1 {
-                output = "\(output)\tBOTCH"
+                output.append(NSAttributedString(string: "\tBOTCH", attributes: [ NSForegroundColorAttributeName: NSColor.red, NSFontAttributeName: NSFont.boldSystemFont(ofSize: 18) ]))
             }
             else if botches >= successes {
-                output = "\(output)\tFailure"
-                
-                if numTens > 0 {
-                    if botches < specialtySuccesses {
-                        output = "\(output)\t\t(\(specialtySuccesses - botches))"
-                    }
-                }
+                output.append(NSAttributedString(string:"\tFailure", attributes: [ NSForegroundColorAttributeName: NSColor.red ]))
             }
             else {
-                output = "\(output)\t\(successes - botches)"
-                if numTens > 0 {
-                    output = "\(output)\t\t\t(\(specialtySuccesses - botches))"
+                output.append(NSAttributedString(string: "\t\(successes - botches)\t", attributes: [ NSForegroundColorAttributeName: NSColor.green ]))
+            }
+            
+            if numTens > 0 {
+                if botches < specialtySuccesses {
+                    output.append(NSAttributedString(string: "\t\t(\(specialtySuccesses - botches))", attributes: [ NSForegroundColorAttributeName: NSColor.green ]))
                 }
             }
             
-            finalOutput = "\(finalOutput)\(output)\n"
+            output.append(NSAttributedString(string: "\n"))
+            finalOutput.append(output)
         }
-        self.resultsView.stringValue = finalOutput
+        self.resultsView.attributedStringValue = finalOutput
     }
 
 }
