@@ -9,8 +9,8 @@
 import Cocoa
 
 class ViewController: NSViewController {
-    @IBOutlet weak var rollView: NSTextField!
     @IBOutlet weak var resultsView: NSTextField!
+    @IBOutlet weak var rollView: RollView!
     
 
     override func viewDidLoad() {
@@ -33,10 +33,12 @@ class ViewController: NSViewController {
             rolls.append(Int(arc4random_uniform(10) + 1))
         }
         
-        displayRolls(rolls: rolls)
+        //displayRolls(rolls: rolls)
+        self.rollView.set(rolls: rolls)
         calculateSuccesses(rolls: rolls)
     }
     
+    /*
     func displayRolls(rolls: [Int]) {
         let output = NSMutableAttributedString(string: "", attributes: nil)
         var current = 1
@@ -66,6 +68,7 @@ class ViewController: NSViewController {
         }
         self.rollView.attributedStringValue = output
     }
+ */
     
     func calculateSuccesses(rolls: [Int]) {
         let finalOutput = NSMutableAttributedString(string: "")
