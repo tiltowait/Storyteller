@@ -11,12 +11,18 @@ import Cocoa
 class ViewController: NSViewController {
     @IBOutlet weak var resultsView: NSTextField!
     @IBOutlet weak var rollView: RollView!
+    @IBOutlet weak var difficultySlider: NSSlider!
+    @IBOutlet weak var difficultyField: NSTextField!
+    @IBOutlet weak var specializedCheckbox: NSButton!
+    @IBOutlet weak var successView: SuccessView!
     
+    var rolls: [Int] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.setDifficulty(self)
     }
 
     override var representedObject: Any? {
@@ -33,90 +39,63 @@ class ViewController: NSViewController {
             rolls.append(Int(arc4random_uniform(10) + 1))
         }
         
-        //displayRolls(rolls: rolls)
-        self.rollView.set(rolls: rolls)
+        self.rollView.set(rolls: rolls, difficulty: self.difficultySlider.integerValue, specialized: self.specializedCheckbox.state == NSOnState)
         calculateSuccesses(rolls: rolls)
+        
+        self.rolls = rolls
     }
     
-    /*
-    func displayRolls(rolls: [Int]) {
-        let output = NSMutableAttributedString(string: "", attributes: nil)
-        var current = 1
+    @IBAction func setDifficulty(_ sender: Any) {
+        let difficulty = self.difficultySlider.integerValue
+        
+        self.difficultyField.stringValue = "\(difficulty)"
+        self.rollView.set(difficulty: difficulty)
+        self.calculateSuccesses(rolls: self.rolls)
+    }
+    
+    @IBAction func setSpecialized(_ sender: Any) {
+        self.calculateSuccesses(rolls: self.rolls)
+        self.rollView.set(specialized: self.specializedCheckbox.state == NSOnState)
+    }
+    
+    func calculateSuccesses(rolls: [Int]) {
+        if rolls.count == 0 {
+            return
+        }
+        
+        let difficulty = self.difficultySlider.integerValue
+        let specialized = self.specializedCheckbox.state == NSOnState
+        
+        var tens = 0
+        var successes = 0
+        var botches = 0
+        var result = 0
         
         for roll in rolls {
-            var attribute = [String: Any]()
             switch roll {
             case 1:
-                attribute = [ NSForegroundColorAttributeName: NSColor.red ]
+                botches += 1
+            case difficulty..<10:
+                successes += 1
             case 10:
-                attribute = [ NSForegroundColorAttributeName: NSColor.green ]
+                successes += 1
+                tens += 1
             default:
                 break
             }
-            
-            output.append(NSAttributedString(string: "\(roll)", attributes: attribute))
-            if current < 8 {
-                output.append(NSAttributedString(string: "\t"))
-                //output = "\(output)\t"
-            }
-            else {
-                output.append(NSAttributedString(string: "\n"))
-                //output = "\(output)\n"
-                current = 1
-            }
-            current += 1
-        }
-        self.rollView.attributedStringValue = output
-    }
- */
-    
-    func calculateSuccesses(rolls: [Int]) {
-        let finalOutput = NSMutableAttributedString(string: "")
-        var numTens = 0
-        
-        for roll in rolls {
-            if roll == 10 {
-                numTens += 1
-            }
         }
         
-        for difficulty in 3...10 {
-            var successes = 0
-            var botches = 0
-            
-            for roll in rolls {
-                if roll >= difficulty {
-                    successes += 1
-                }
-                else if roll == 1 {
-                    botches += 1
-                }
-            }
-            
-            let specialtySuccesses = successes + numTens
-            let output = NSMutableAttributedString(string: "\(difficulty):")
-            
-            if successes == 0 && botches >= 1 {
-                output.append(NSAttributedString(string: "\tBOTCH", attributes: [ NSForegroundColorAttributeName: NSColor.red, NSFontAttributeName: NSFont.boldSystemFont(ofSize: 18) ]))
-            }
-            else if botches >= successes {
-                output.append(NSAttributedString(string:"\tFailure", attributes: [ NSForegroundColorAttributeName: NSColor.red ]))
-            }
-            else {
-                output.append(NSAttributedString(string: "\t\(successes - botches)\t", attributes: [ NSForegroundColorAttributeName: NSColor.green ]))
-            }
-            
-            if numTens > 0 {
-                if botches < specialtySuccesses {
-                    output.append(NSAttributedString(string: "\t\t(\(specialtySuccesses - botches))", attributes: [ NSForegroundColorAttributeName: NSColor.green ]))
-                }
-            }
-            
-            output.append(NSAttributedString(string: "\n"))
-            finalOutput.append(output)
+        if successes == 0 && botches > 0 {
+            result = -1
         }
-        self.resultsView.attributedStringValue = finalOutput
+        else if successes > 0 {
+            result = successes - botches
+            
+            if specialized {
+                result += tens
+            }
+        }
+        self.successView.set(successes: result)
     }
-
 }
 

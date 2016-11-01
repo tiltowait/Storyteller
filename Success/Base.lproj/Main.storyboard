@@ -683,42 +683,15 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="Success" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="650" height="251"/>
+                        <rect key="frame" x="0.0" y="0.0" width="607" height="282"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d2g-in-R57">
-                                <rect key="frame" x="246" y="214" width="33" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Rolls" id="o1E-go-nZk">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mbG-ao-cFC">
-                                <rect key="frame" x="456" y="214" width="49" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Results" id="AE7-84-blq">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v5g-O8-7ft">
-                                <rect key="frame" x="456" y="20" width="176" height="186"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="kZV-dg-1A3">
-                                    <font key="font" metaFont="system" size="18"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7eI-0B-bad" customClass="RollView" customModule="Success" customModuleProvider="target">
-                                <rect key="frame" x="248" y="46" width="200" height="160"/>
+                                <rect key="frame" x="248" y="77" width="200" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jlv-AK-upQ">
-                                <rect key="frame" x="20" y="214" width="62" height="17"/>
+                                <rect key="frame" x="99" y="245" width="62" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Dice Pool" id="NWi-jL-BlX">
                                     <font key="font" metaFont="system"/>
@@ -726,8 +699,8 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <matrix verticalHuggingPriority="750" fixedFrame="YES" mode="highlight" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NzI-09-QZ1">
-                                <rect key="frame" x="20" y="46" width="220" height="160"/>
+                            <matrix toolTip="Click to roll this many dice" verticalHuggingPriority="750" fixedFrame="YES" mode="highlight" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NzI-09-QZ1">
+                                <rect key="frame" x="20" y="77" width="220" height="160"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 <size key="cellSize" width="55" height="32"/>
@@ -829,16 +802,61 @@
                                     <action selector="rollDice:" target="XfG-lQ-9wD" id="C4b-XU-aDC"/>
                                 </connections>
                             </matrix>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="toN-1v-fhm" customClass="SuccessView" customModule="Success" customModuleProvider="target">
+                                <rect key="frame" x="458" y="77" width="129" height="160"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
+                            <slider toolTip="Select difficulty" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2pa-gH-scg">
+                                <rect key="frame" x="246" y="45" width="96" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="3" maxValue="10" doubleValue="6" tickMarkPosition="above" numberOfTickMarks="8" allowsTickMarkValuesOnly="YES" sliderType="linear" id="oOC-Ub-xIb"/>
+                                <connections>
+                                    <action selector="setDifficulty:" target="XfG-lQ-9wD" id="zLQ-5r-mEb"/>
+                                </connections>
+                            </slider>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qcu-tR-cN7">
+                                <rect key="frame" x="348" y="52" width="37" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="mQL-Mi-21S">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button toolTip="Set whether the roll is specialized" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H8b-gd-aGJ">
+                                <rect key="frame" x="402" y="49" width="92" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Specialized" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="o6j-GR-nX8">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="setSpecialized:" target="XfG-lQ-9wD" id="NHr-gT-mxh"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d2g-in-R57">
+                                <rect key="frame" x="332" y="245" width="33" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Rolls" id="o1E-go-nZk">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="resultsView" destination="v5g-O8-7ft" id="Dfl-7B-XEm"/>
+                        <outlet property="difficultyField" destination="Qcu-tR-cN7" id="1c8-6d-HJw"/>
+                        <outlet property="difficultySlider" destination="2pa-gH-scg" id="IVu-ax-j70"/>
                         <outlet property="rollView" destination="7eI-0B-bad" id="kub-gX-Hg2"/>
+                        <outlet property="specializedCheckbox" destination="H8b-gd-aGJ" id="aoi-6T-wGa"/>
+                        <outlet property="successView" destination="toN-1v-fhm" id="Pbo-ut-wjf"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="BE5-VX-7wf"/>
             </objects>
-            <point key="canvasLocation" x="160" y="645.5"/>
+            <point key="canvasLocation" x="138.5" y="661"/>
         </scene>
     </scenes>
 </document>

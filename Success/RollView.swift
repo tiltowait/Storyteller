@@ -13,6 +13,8 @@ class RollView: NSView {
     let spacing: CGFloat = 5.0
     let shade: CGFloat = 251.0 / 255.0
     var rolls: [Int] = []
+    var difficulty: Int = 6
+    var specialized = false
 
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
@@ -22,22 +24,31 @@ class RollView: NSView {
         var y: CGFloat = self.frame.height - side
         
         for roll in self.rolls {
-            //draw the rectangle
-            let rect = NSMakeRect(x, y, self.side, self.side)
-            NSColor.init(red: shade, green: shade, blue: shade, alpha: 1.0).set()
-            //NSRectFill(rect)
-            NSBezierPath.init(roundedRect: rect, xRadius: 3.0, yRadius: 3.0).fill()
+            //calculate the colors
+            var foregroundColor: NSColor
+            var backgroundColor: NSColor
             
-            //draw the text
-            var foregroundColor = NSColor.black
             switch roll {
             case 1:
-                foregroundColor = NSColor.red
-            case 10:
-                foregroundColor = NSColor.green
+                foregroundColor = NSColor.white
+                backgroundColor = NSColor.red
+            case self.difficulty...10:
+                foregroundColor = NSColor.black
+                backgroundColor = NSColor.init(red: 0.7843137255, green: 1.0, blue: 0.7843137255, alpha: 1.0)
+                
+                if specialized && roll == 10 {
+                    foregroundColor = NSColor.white
+                    backgroundColor = NSColor.green
+                }
             default:
-                break
+                foregroundColor = NSColor.black
+                backgroundColor = NSColor.init(red: shade, green: shade, blue: shade, alpha: 1.0)
             }
+            
+            //draw the rectangle
+            let rect = NSMakeRect(x, y, self.side, self.side)
+            backgroundColor.set()
+            NSBezierPath.init(roundedRect: rect, xRadius: 3.0, yRadius: 3.0).fill()
             
             let style: NSMutableParagraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
             style.alignment = NSTextAlignment.center
@@ -62,8 +73,20 @@ class RollView: NSView {
         }
     }
     
-    func set(rolls: [Int]) {
+    func set(rolls: [Int], difficulty: Int, specialized: Bool) {
         self.rolls = rolls
+        self.difficulty = difficulty
+        self.needsDisplay = true
+        self.specialized = specialized
+    }
+    
+    func set(difficulty: Int) {
+        self.difficulty = difficulty
+        self.needsDisplay = true
+    }
+    
+    func set(specialized: Bool) {
+        self.specialized = specialized
         self.needsDisplay = true
     }
     
