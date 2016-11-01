@@ -9,12 +9,16 @@
 import Cocoa
 
 class RollView: NSView {
+    let delayIncrement = 0.08
+    
     let side: CGFloat = 35.0
     let spacing: CGFloat = 5.0
     let shade: CGFloat = 251.0 / 255.0
+    
     var rolls: [Int] = []
     var difficulty: Int = 6
     var specialized = false
+    var totalUpdate = true
 
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
@@ -25,8 +29,11 @@ class RollView: NSView {
             return
         }
         
+        self.layer?.sublayers = nil
+        
         var x: CGFloat = 0.0
         var y: CGFloat = self.frame.height - side
+        var delay = CACurrentMediaTime()
         
         for roll in self.rolls {
             //calculate the colors
@@ -50,28 +57,52 @@ class RollView: NSView {
                 backgroundColor = NSColor.init(red: shade, green: shade, blue: shade, alpha: 1.0)
             }
             
-            //draw the rectangle
+            //create the layer
             let rect = NSMakeRect(x, y, self.side, self.side)
-            backgroundColor.set()
-            NSBezierPath.init(roundedRect: rect, xRadius: 3.0, yRadius: 3.0).fill()
+            let layer = CALayer()
             
-            let style: NSMutableParagraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
-            style.alignment = NSTextAlignment.center
+            layer.frame = rect
+            layer.backgroundColor = backgroundColor.cgColor
+            layer.cornerRadius = 3.0
+            
+            //create the label
+            let label = CATextLayer()
             let font = NSFont.boldSystemFont(ofSize: 18)
+            let rollString = "\(roll)"
             
-            //draw the string
-            let string = "\(roll)" as NSString
-            let attributes = [ NSParagraphStyleAttributeName: style,
-                               NSForegroundColorAttributeName: foregroundColor,
-                               NSFontAttributeName: font ] as [String : Any]
+            label.contentsScale = NSScreen.main()!.backingScaleFactor
             
-            let heightForStringDrawing = string.size(withAttributes: attributes).height
-            let stringRect = NSMakeRect(x, (y - (self.side - heightForStringDrawing) / 2), self.side, self.side)
+            label.string = rollString
+            label.foregroundColor = foregroundColor.cgColor
+            label.font = font
+            label.fontSize = 18
+            label.alignmentMode = "center"
             
-            string.draw(in: stringRect, withAttributes: attributes)
+            //calculate vertical center
+            let labelHeight = rollString.size(withAttributes: [ NSFontAttributeName: font ]).height
+            let labelRect = NSMakeRect(0, 0 - ((self.side - labelHeight) / 2), self.side, self.side)
             
-            //prepare for next rectangle
+            label.frame = labelRect
+            layer.addSublayer(label)
+            
+            //create the animation
+            if self.totalUpdate {
+                let animation = CABasicAnimation.init(keyPath: "opacity")
+                animation.fromValue = 0.0
+                animation.toValue = 1.0
+                animation.duration = 0.25
+                animation.isRemovedOnCompletion = false
+                animation.fillMode = kCAFillModeForwards
+                animation.beginTime = delay
+            
+                layer.opacity = 0.0
+                layer.add(animation, forKey: "opacity")
+            }
+            
+            self.layer?.addSublayer(layer)
+            
             x += side + spacing
+            delay += delayIncrement
             if x + side > self.frame.width {
                 x = 0.0
                 y -= side + spacing
@@ -82,16 +113,19 @@ class RollView: NSView {
     func set(rolls: [Int], difficulty: Int, specialized: Bool) {
         self.rolls = rolls
         self.difficulty = difficulty
+        self.totalUpdate = true
         self.needsDisplay = true
         self.specialized = specialized
     }
     
     func set(difficulty: Int) {
         self.difficulty = difficulty
+        self.totalUpdate = false
         self.needsDisplay = true
     }
     
     func set(specialized: Bool) {
+        self.totalUpdate = false
         self.specialized = specialized
         self.needsDisplay = true
     }
