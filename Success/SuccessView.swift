@@ -16,6 +16,8 @@ class SuccessView: NSView {
         super.draw(dirtyRect)
 
         // Drawing code here.
+        let oldSublayers = self.layer?.sublayers
+        
         var backgroundColor = NSColor.init(red: shade, green: shade, blue: shade, alpha: 1.0)
         var foregroundColor = NSColor.gray
         var string = "-"
@@ -51,38 +53,68 @@ class SuccessView: NSView {
             break
         }
         
-        //draw the rectangle
-        let width: CGFloat = self.frame.width
-        let height: CGFloat = self.frame.height
-        let x: CGFloat = (self.frame.width - width)
-        let y: CGFloat = (self.frame.height - height) / 2
-        let rect = NSMakeRect(x, y, width, height)
+        //set up the layer
+        let rect = self.backgroundRect() //NSMakeRect(x, y, width, height)
+        let layer = CALayer()
         
-        backgroundColor.set()
-        NSBezierPath.init(roundedRect: rect, xRadius: 8.0, yRadius: 8.0).fill()
+        layer.backgroundColor = backgroundColor.cgColor
+        layer.frame = rect
+        layer.cornerRadius = 8.0
         
-        //draw the text
-        let style: NSMutableParagraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
-        style.alignment = NSTextAlignment.center
+        //set up the text
+        let successesLabel = CATextLayer()
         let font = NSFont.boldSystemFont(ofSize: 70)
-        var attributes = [ NSParagraphStyleAttributeName: style,
-                           NSForegroundColorAttributeName: foregroundColor,
-                           NSFontAttributeName: font ] as [String : Any]
         
-        let heightForStringDrawing = string.size(withAttributes: attributes).height
+        successesLabel.string = string
+        successesLabel.alignmentMode = "center"
+        successesLabel.font = font
+        successesLabel.fontSize = 70
+        successesLabel.contentsScale = NSScreen.main()!.backingScaleFactor
+        successesLabel.foregroundColor = foregroundColor.cgColor
         
+        let successesHeight = string.size(withAttributes: [ NSFontAttributeName: font ]).height
         let delta: CGFloat = self.successes < 0 ? 0 : 14
-        let stringRect = NSMakeRect(x, (y - (height - heightForStringDrawing) / 2 + delta), width, height)
+        let stringRect = NSMakeRect(rect.origin.x, rect.origin.y - (rect.height - successesHeight) / 2 + delta, rect.width, rect.height)
         
-        string.draw(in: stringRect, withAttributes: attributes)
+        successesLabel.frame = stringRect
+        
+        layer.addSublayer(successesLabel)
         
         if self.successes >= 0 {
-            let successes: NSString = self.successes == 1 ? "SUCCESS" : "SUCCESSES"
-        
-            attributes[NSFontAttributeName] = NSFont.boldSystemFont(ofSize: 18)
-            let successesRect = NSMakeRect(x, y + 7, width, successes.size(withAttributes: attributes).height)
-            successes.draw(in: successesRect, withAttributes: attributes)
+            let title = CATextLayer()
+            title.string = self.successes == 1 ? "SUCCESS" : "SUCCESSES"
+            title.font = font
+            title.fontSize = 18
+            
+            let titleHeight = "SUCCESS".size(withAttributes: [ NSFontAttributeName: NSFont.boldSystemFont(ofSize: 18) ]).height
+            
+            title.frame = NSMakeRect(rect.origin.x, -rect.height + titleHeight + 7, rect.width, rect.height)
+            title.foregroundColor = foregroundColor.cgColor
+            title.contentsScale = NSScreen.main()!.backingScaleFactor
+            title.alignmentMode = "center"
+            
+            layer.addSublayer(title)
         }
+        
+        let animation = CABasicAnimation.init(keyPath: "opacity")
+        animation.fromValue = 0.0
+        animation.toValue = 1.0
+        animation.duration = 0.15
+        
+        layer.add(animation, forKey: "opacity")
+        self.layer?.addSublayer(layer)
+        
+        if oldSublayers != nil {
+            for layer in oldSublayers! {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                    layer.removeFromSuperlayer()
+                }
+            }
+        }
+    }
+    
+    func backgroundRect() -> NSRect {
+        return NSMakeRect(0.0, 0.0, self.frame.width, self.frame.height)
     }
     
     func set(successes: Int) {
