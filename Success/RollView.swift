@@ -20,6 +20,23 @@ class RollView: NSView {
         super.draw(dirtyRect)
 
         // Drawing code here.
+        if self.rolls.count == 0 { //give some instructions if we haven't rolled anything
+            let instructions = "Click a dice pool on\nthe left to begin" as NSString
+            let style: NSMutableParagraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
+            style.alignment = NSTextAlignment.center
+            let font = NSFont.boldSystemFont(ofSize: 18)
+            let attributes = [ NSFontAttributeName: font,
+                               NSForegroundColorAttributeName: NSColor.gray,
+                               NSParagraphStyleAttributeName: style ]
+            let drawHeight = instructions.size(withAttributes: attributes).height
+            let y: CGFloat = (self.frame.height - drawHeight) / 2 + 20
+            let rect = NSMakeRect(0.0, y, self.frame.width, drawHeight)
+            
+            instructions.draw(in: rect, withAttributes: attributes)
+            
+            return
+        }
+        
         var x: CGFloat = 0.0
         var y: CGFloat = self.frame.height - side
         

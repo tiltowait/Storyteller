@@ -53,7 +53,7 @@ class SuccessView: NSView {
         
         //draw the rectangle
         let width: CGFloat = self.frame.width
-        let height: CGFloat = self.frame.height * 0.75
+        let height: CGFloat = self.frame.height
         let x: CGFloat = (self.frame.width - width)
         let y: CGFloat = (self.frame.height - height) / 2
         let rect = NSMakeRect(x, y, width, height)
@@ -71,7 +71,7 @@ class SuccessView: NSView {
         
         let heightForStringDrawing = string.size(withAttributes: attributes).height
         
-        let delta: CGFloat = self.successes < 0 ? 0 : 12
+        let delta: CGFloat = self.successes < 0 ? 0 : 14
         let stringRect = NSMakeRect(x, (y - (height - heightForStringDrawing) / 2 + delta), width, height)
         
         string.draw(in: stringRect, withAttributes: attributes)
