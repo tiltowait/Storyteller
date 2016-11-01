@@ -95,6 +95,11 @@ class ViewController: NSViewController {
                 result += tens
             }
         }
+        
+        if result < 0 && rolls.count > 0 && successes > 0 {
+            result = 0
+        }
+        
         self.successView.set(successes: result)
     }
 }

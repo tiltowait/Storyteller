@@ -21,19 +21,7 @@ class RollView: NSView {
 
         // Drawing code here.
         if self.rolls.count == 0 { //give some instructions if we haven't rolled anything
-            let instructions = "Click a dice pool on\nthe left to begin" as NSString
-            let style: NSMutableParagraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
-            style.alignment = NSTextAlignment.center
-            let font = NSFont.boldSystemFont(ofSize: 18)
-            let attributes = [ NSFontAttributeName: font,
-                               NSForegroundColorAttributeName: NSColor.gray,
-                               NSParagraphStyleAttributeName: style ]
-            let drawHeight = instructions.size(withAttributes: attributes).height
-            let y: CGFloat = (self.frame.height - drawHeight) / 2 + 20
-            let rect = NSMakeRect(0.0, y, self.frame.width, drawHeight)
-            
-            instructions.draw(in: rect, withAttributes: attributes)
-            
+            drawBlank()
             return
         }
         
@@ -71,6 +59,7 @@ class RollView: NSView {
             style.alignment = NSTextAlignment.center
             let font = NSFont.boldSystemFont(ofSize: 18)
             
+            //draw the string
             let string = "\(roll)" as NSString
             let attributes = [ NSParagraphStyleAttributeName: style,
                                NSForegroundColorAttributeName: foregroundColor,
@@ -105,6 +94,21 @@ class RollView: NSView {
     func set(specialized: Bool) {
         self.specialized = specialized
         self.needsDisplay = true
+    }
+    
+    func drawBlank() {
+        let instructions = "Click a dice pool on\nthe left to begin" as NSString
+        let style: NSMutableParagraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
+        style.alignment = NSTextAlignment.center
+        let font = NSFont.boldSystemFont(ofSize: 18)
+        let attributes = [ NSFontAttributeName: font,
+                           NSForegroundColorAttributeName: NSColor.gray,
+                           NSParagraphStyleAttributeName: style ]
+        let drawHeight = instructions.size(withAttributes: attributes).height
+        let y: CGFloat = (self.frame.height - drawHeight) / 2 + 20
+        let rect = NSMakeRect(0.0, y, self.frame.width, drawHeight)
+        
+        instructions.draw(in: rect, withAttributes: attributes)
     }
     
 }
