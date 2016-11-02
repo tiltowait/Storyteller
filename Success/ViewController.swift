@@ -9,11 +9,7 @@
 import Cocoa
 
 class ViewController: NSViewController {
-    @IBOutlet weak var resultsView: NSTextField!
     @IBOutlet weak var rollView: RollView!
-    @IBOutlet weak var difficultySlider: NSSlider!
-    @IBOutlet weak var difficultyField: NSTextField!
-    @IBOutlet weak var specializedCheckbox: NSButton!
     @IBOutlet weak var successView: SuccessView!
     @IBOutlet var roller: Roller!
 

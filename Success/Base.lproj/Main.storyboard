@@ -833,11 +833,8 @@
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="difficultyField" destination="Qcu-tR-cN7" id="1c8-6d-HJw"/>
-                        <outlet property="difficultySlider" destination="2pa-gH-scg" id="IVu-ax-j70"/>
                         <outlet property="rollView" destination="7eI-0B-bad" id="kub-gX-Hg2"/>
                         <outlet property="roller" destination="O9w-eh-9uZ" id="PSF-O8-2hm"/>
-                        <outlet property="specializedCheckbox" destination="H8b-gd-aGJ" id="aoi-6T-wGa"/>
                         <outlet property="successView" destination="toN-1v-fhm" id="Pbo-ut-wjf"/>
                     </connections>
                 </viewController>
