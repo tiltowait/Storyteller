@@ -15,92 +15,19 @@ class ViewController: NSViewController {
     @IBOutlet weak var difficultyField: NSTextField!
     @IBOutlet weak var specializedCheckbox: NSButton!
     @IBOutlet weak var successView: SuccessView!
-    
-    var rolls: [Int] = []
+    @IBOutlet var roller: Roller!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.setDifficulty(self)
-    }
-
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
+        self.roller.addDelegate(delegate: self.rollView)
+        self.roller.addDelegate(delegate: self.successView)
     }
 
     @IBAction func rollDice(_ sender: NSMatrix) {
-        let dicePool = sender.selectedCell()!.tag
-        var rolls = [Int]()
-        
-        for _ in 1...dicePool {
-            rolls.append(Int(arc4random_uniform(10) + 1))
-        }
-        
-        self.rollView.set(rolls: rolls, difficulty: self.difficultySlider.integerValue, specialized: self.specializedCheckbox.state == NSOnState)
-        calculateSuccesses(rolls: rolls)
-        
-        self.rolls = rolls
-    }
-    
-    @IBAction func setDifficulty(_ sender: Any) {
-        let difficulty = self.difficultySlider.integerValue
-        
-        self.difficultyField.stringValue = "\(difficulty)"
-        self.rollView.set(difficulty: difficulty)
-        self.calculateSuccesses(rolls: self.rolls)
-    }
-    
-    @IBAction func setSpecialized(_ sender: Any) {
-        self.calculateSuccesses(rolls: self.rolls)
-        self.rollView.set(specialized: self.specializedCheckbox.state == NSOnState)
-    }
-    
-    func calculateSuccesses(rolls: [Int]) {
-        if rolls.count == 0 {
-            return
-        }
-        
-        let difficulty = self.difficultySlider.integerValue
-        let specialized = self.specializedCheckbox.state == NSOnState
-        
-        var tens = 0
-        var successes = 0
-        var botches = 0
-        var result = 0
-        
-        for roll in rolls {
-            switch roll {
-            case 1:
-                botches += 1
-            case difficulty..<10:
-                successes += 1
-            case 10:
-                successes += 1
-                tens += 1
-            default:
-                break
-            }
-        }
-        
-        if successes == 0 && botches > 0 {
-            result = -1
-        }
-        else if successes > 0 {
-            result = successes - botches
-            
-            if specialized {
-                result += tens
-            }
-        }
-        
-        if result < 0 && rolls.count > 0 && successes > 0 {
-            result = 0
-        }
-        
-        self.successView.set(successes: result)
+        let pool = sender.selectedCell()!.tag
+        roller.roll(dice: pool)
     }
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12056A701DC985C30090961D /* Roller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12056A6F1DC985C30090961D /* Roller.swift */; };
 		12210BBA1DC7E0ED0010C4B3 /* RollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12210BB91DC7E0ED0010C4B3 /* RollView.swift */; };
 		126A79C11DC82F760003A2AD /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126A79C01DC82F760003A2AD /* SuccessView.swift */; };
 		D123DA651DC3F2A400499622 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D123DA641DC3F2A400499622 /* AppDelegate.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12056A6F1DC985C30090961D /* Roller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Roller.swift; sourceTree = "<group>"; };
 		12210BB91DC7E0ED0010C4B3 /* RollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RollView.swift; sourceTree = "<group>"; };
 		126A79C01DC82F760003A2AD /* SuccessView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
 		D123DA611DC3F2A400499622 /* Success.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Success.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +104,7 @@
 				D123DA641DC3F2A400499622 /* AppDelegate.swift */,
 				D123DA661DC3F2A400499622 /* ViewController.swift */,
 				126A79C01DC82F760003A2AD /* SuccessView.swift */,
+				12056A6F1DC985C30090961D /* Roller.swift */,
 				D123DA681DC3F2A400499622 /* Assets.xcassets */,
 				D123DA6A1DC3F2A400499622 /* Main.storyboard */,
 				12210BB91DC7E0ED0010C4B3 /* RollView.swift */,
@@ -265,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				126A79C11DC82F760003A2AD /* SuccessView.swift in Sources */,
+				12056A701DC985C30090961D /* Roller.swift in Sources */,
 				12210BBA1DC7E0ED0010C4B3 /* RollView.swift in Sources */,
 				D123DA671DC3F2A400499622 /* ViewController.swift in Sources */,
 				D123DA651DC3F2A400499622 /* AppDelegate.swift in Sources */,

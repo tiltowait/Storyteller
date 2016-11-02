@@ -807,15 +807,15 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="setSpecialized:" target="XfG-lQ-9wD" id="NHr-gT-mxh"/>
+                                    <binding destination="O9w-eh-9uZ" name="value" keyPath="_specialized" id="3jO-4Y-Awj"/>
                                 </connections>
                             </button>
                             <slider toolTip="Select difficulty" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2pa-gH-scg">
-                                <rect key="frame" x="454" y="40" width="108" height="19"/>
+                                <rect key="frame" x="454" y="40" width="108" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="3" maxValue="10" doubleValue="6" tickMarkPosition="above" allowsTickMarkValuesOnly="YES" sliderType="linear" id="oOC-Ub-xIb"/>
+                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="3" maxValue="10" doubleValue="6" tickMarkPosition="above" numberOfTickMarks="8" allowsTickMarkValuesOnly="YES" sliderType="linear" id="oOC-Ub-xIb"/>
                                 <connections>
-                                    <action selector="setDifficulty:" target="XfG-lQ-9wD" id="zLQ-5r-mEb"/>
+                                    <binding destination="O9w-eh-9uZ" name="value" keyPath="_difficulty" id="Omb-H1-cj2"/>
                                 </connections>
                             </slider>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qcu-tR-cN7">
@@ -826,6 +826,9 @@
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="O9w-eh-9uZ" name="value" keyPath="_difficulty" id="lK6-mJ-8Zn"/>
+                                </connections>
                             </textField>
                         </subviews>
                     </view>
@@ -833,11 +836,13 @@
                         <outlet property="difficultyField" destination="Qcu-tR-cN7" id="1c8-6d-HJw"/>
                         <outlet property="difficultySlider" destination="2pa-gH-scg" id="IVu-ax-j70"/>
                         <outlet property="rollView" destination="7eI-0B-bad" id="kub-gX-Hg2"/>
+                        <outlet property="roller" destination="O9w-eh-9uZ" id="PSF-O8-2hm"/>
                         <outlet property="specializedCheckbox" destination="H8b-gd-aGJ" id="aoi-6T-wGa"/>
                         <outlet property="successView" destination="toN-1v-fhm" id="Pbo-ut-wjf"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="O9w-eh-9uZ" customClass="Roller" customModule="Success" customModuleProvider="target"/>
                 <userDefaultsController representsSharedInstance="YES" id="BE5-VX-7wf"/>
             </objects>
             <point key="canvasLocation" x="137.5" y="620"/>

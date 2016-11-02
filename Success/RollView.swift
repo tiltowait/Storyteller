@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class RollView: NSView {
+class RollView: NSView, RollerDelegate {
     let delayIncrement = 0.08
     
     let side: CGFloat = 35.0
@@ -110,6 +110,10 @@ class RollView: NSView {
         }
     }
     
+    func set(roller: Roller) {
+        self.set(rolls: roller.rolls, difficulty: roller.difficulty, specialized: roller.specialized)
+    }
+    
     func set(rolls: [Int], difficulty: Int, specialized: Bool) {
         self.rolls = rolls
         self.difficulty = difficulty
@@ -145,4 +149,19 @@ class RollView: NSView {
         instructions.draw(in: rect, withAttributes: attributes)
     }
     
+    //delegate methods
+    func rollsUpdated(roller: Roller) {
+        //need to see what we need to update
+        if self.rolls == roller.rolls {
+            if roller.difficulty == self.difficulty {
+                self.set(specialized: roller.specialized)
+            }
+            else {
+                self.set(difficulty: roller.difficulty)
+            }
+        }
+        else {
+            self.set(roller: roller)
+        }
+    }
 }

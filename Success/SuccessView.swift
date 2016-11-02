@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class SuccessView: NSView {
+class SuccessView: NSView, RollerDelegate {
     let shade: CGFloat = 220.0/255.0
     var successes = -2
 
@@ -120,5 +120,10 @@ class SuccessView: NSView {
     func set(successes: Int) {
         self.successes = successes
         self.needsDisplay = true
+    }
+    
+    //delegate methods
+    func rollsUpdated(roller: Roller) {
+        self.set(successes: roller.successes())
     }
 }
