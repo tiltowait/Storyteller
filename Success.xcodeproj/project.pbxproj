@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		12056A701DC985C30090961D /* Roller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12056A6F1DC985C30090961D /* Roller.swift */; };
+		12056A731DC99A380090961D /* Roll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12056A721DC99A380090961D /* Roll.swift */; };
 		12210BBA1DC7E0ED0010C4B3 /* RollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12210BB91DC7E0ED0010C4B3 /* RollView.swift */; };
 		126A79C11DC82F760003A2AD /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126A79C01DC82F760003A2AD /* SuccessView.swift */; };
 		D123DA651DC3F2A400499622 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D123DA641DC3F2A400499622 /* AppDelegate.swift */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		12056A6F1DC985C30090961D /* Roller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Roller.swift; sourceTree = "<group>"; };
+		12056A721DC99A380090961D /* Roll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Roll.swift; sourceTree = "<group>"; };
 		12210BB91DC7E0ED0010C4B3 /* RollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RollView.swift; sourceTree = "<group>"; };
 		126A79C01DC82F760003A2AD /* SuccessView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
 		D123DA611DC3F2A400499622 /* Success.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Success.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,6 +41,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		12056A711DC99A140090961D /* CALayers */ = {
+			isa = PBXGroup;
+			children = (
+				12056A721DC99A380090961D /* Roll.swift */,
+			);
+			name = CALayers;
+			sourceTree = "<group>";
+		};
 		D123DA581DC3F2A300499622 = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +68,7 @@
 		D123DA631DC3F2A400499622 /* Success */ = {
 			isa = PBXGroup;
 			children = (
+				12056A711DC99A140090961D /* CALayers */,
 				D123DA641DC3F2A400499622 /* AppDelegate.swift */,
 				D123DA661DC3F2A400499622 /* ViewController.swift */,
 				126A79C01DC82F760003A2AD /* SuccessView.swift */,
@@ -144,6 +155,7 @@
 			files = (
 				126A79C11DC82F760003A2AD /* SuccessView.swift in Sources */,
 				12056A701DC985C30090961D /* Roller.swift in Sources */,
+				12056A731DC99A380090961D /* Roll.swift in Sources */,
 				12210BBA1DC7E0ED0010C4B3 /* RollView.swift in Sources */,
 				D123DA671DC3F2A400499622 /* ViewController.swift in Sources */,
 				D123DA651DC3F2A400499622 /* AppDelegate.swift in Sources */,

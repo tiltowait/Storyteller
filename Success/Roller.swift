@@ -71,14 +71,10 @@ public class Roller: NSObject {
             result = -1
         }
         else if successes > 0 {
-            result = successes - botches
-        }
-        else if successes > 0 && successes < botches {
-            result = 0
-        }
-        
-        if specialized {
-            result += tens
+            result = successes - botches + (specialized ? tens : 0)
+            if result < 0 {
+                result = 0
+            }
         }
         
         return result
