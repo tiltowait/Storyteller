@@ -14,13 +14,13 @@ protocol RollerDelegate {
 
 public class Roller: NSObject {
     public private(set) var rolls: [Int] = []
-    public var _specialized: NSNumber = NSOnState as NSNumber {
+    @objc public var _specialized: NSNumber = NSControl.StateValue.on as NSNumber {
         didSet {
-            self.specialized = _specialized == NSOnState as NSNumber
+            self.specialized = _specialized == NSControl.StateValue.on as NSNumber
             self.updateDelegates()
         }
     }
-    public var _difficulty: NSNumber = 6 {
+    @objc public var _difficulty: NSNumber = 6 {
         didSet {
             self.updateDelegates()
         }

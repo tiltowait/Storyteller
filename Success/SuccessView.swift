@@ -69,10 +69,10 @@ class SuccessView: NSView, RollerDelegate {
         successesLabel.alignmentMode = "center"
         successesLabel.font = font
         successesLabel.fontSize = 70
-        successesLabel.contentsScale = NSScreen.main()!.backingScaleFactor
+        successesLabel.contentsScale = NSScreen.main!.backingScaleFactor
         successesLabel.foregroundColor = foregroundColor.cgColor
         
-        let successesHeight = string.size(withAttributes: [ NSFontAttributeName: font ]).height
+        let successesHeight = string.size(withAttributes: [ NSAttributedStringKey.font: font ]).height
         let delta: CGFloat = self.successes < 0 ? 0 : 14
         let stringRect = NSMakeRect(rect.origin.x, rect.origin.y - (rect.height - successesHeight) / 2 + delta, rect.width, rect.height)
         
@@ -86,11 +86,11 @@ class SuccessView: NSView, RollerDelegate {
             title.font = font
             title.fontSize = 18
             
-            let titleHeight = "SUCCESS".size(withAttributes: [ NSFontAttributeName: NSFont.boldSystemFont(ofSize: 18) ]).height
+            let titleHeight = "SUCCESS".size(withAttributes: [ NSAttributedStringKey.font: NSFont.boldSystemFont(ofSize: 18) ]).height
             
             title.frame = NSMakeRect(rect.origin.x, -rect.height + titleHeight + 7, rect.width, rect.height)
             title.foregroundColor = foregroundColor.cgColor
-            title.contentsScale = NSScreen.main()!.backingScaleFactor
+            title.contentsScale = NSScreen.main!.backingScaleFactor
             title.alignmentMode = "center"
             
             layer.addSublayer(title)

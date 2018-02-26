@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		12056A701DC985C30090961D /* Roller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12056A6F1DC985C30090961D /* Roller.swift */; };
-		12056A731DC99A380090961D /* Roll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12056A721DC99A380090961D /* Roll.swift */; };
 		12210BBA1DC7E0ED0010C4B3 /* RollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12210BB91DC7E0ED0010C4B3 /* RollView.swift */; };
 		126A79C11DC82F760003A2AD /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126A79C01DC82F760003A2AD /* SuccessView.swift */; };
 		D123DA651DC3F2A400499622 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D123DA641DC3F2A400499622 /* AppDelegate.swift */; };
@@ -19,7 +18,6 @@
 
 /* Begin PBXFileReference section */
 		12056A6F1DC985C30090961D /* Roller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Roller.swift; sourceTree = "<group>"; };
-		12056A721DC99A380090961D /* Roll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Roll.swift; sourceTree = "<group>"; };
 		12210BB91DC7E0ED0010C4B3 /* RollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RollView.swift; sourceTree = "<group>"; };
 		126A79C01DC82F760003A2AD /* SuccessView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
 		D123DA611DC3F2A400499622 /* Success.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Success.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,14 +39,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		12056A711DC99A140090961D /* CALayers */ = {
-			isa = PBXGroup;
-			children = (
-				12056A721DC99A380090961D /* Roll.swift */,
-			);
-			name = CALayers;
-			sourceTree = "<group>";
-		};
 		D123DA581DC3F2A300499622 = {
 			isa = PBXGroup;
 			children = (
@@ -68,7 +58,6 @@
 		D123DA631DC3F2A400499622 /* Success */ = {
 			isa = PBXGroup;
 			children = (
-				12056A711DC99A140090961D /* CALayers */,
 				D123DA641DC3F2A400499622 /* AppDelegate.swift */,
 				D123DA661DC3F2A400499622 /* ViewController.swift */,
 				126A79C01DC82F760003A2AD /* SuccessView.swift */,
@@ -108,12 +97,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Baciarini's Martial Arts Inc";
 				TargetAttributes = {
 					D123DA601DC3F2A300499622 = {
 						CreatedOnToolsVersion = 8.0;
-						LastSwiftMigration = 0810;
+						DevelopmentTeam = 56MB68UYDC;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -155,7 +145,6 @@
 			files = (
 				126A79C11DC82F760003A2AD /* SuccessView.swift in Sources */,
 				12056A701DC985C30090961D /* Roller.swift in Sources */,
-				12056A731DC99A380090961D /* Roll.swift in Sources */,
 				12210BBA1DC7E0ED0010C4B3 /* RollView.swift in Sources */,
 				D123DA671DC3F2A400499622 /* ViewController.swift in Sources */,
 				D123DA651DC3F2A400499622 /* AppDelegate.swift in Sources */,
@@ -185,7 +174,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -193,14 +184,19 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 56MB68UYDC;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -235,7 +231,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -243,14 +241,19 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 56MB68UYDC;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -277,7 +280,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tiltowait.Success;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -290,7 +294,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tiltowait.Success;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

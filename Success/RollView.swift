@@ -70,7 +70,7 @@ class RollView: NSView, RollerDelegate {
             let font = NSFont.boldSystemFont(ofSize: 18)
             let rollString = "\(roll)"
             
-            label.contentsScale = NSScreen.main()!.backingScaleFactor
+            label.contentsScale = NSScreen.main!.backingScaleFactor
             
             label.string = rollString
             label.foregroundColor = foregroundColor.cgColor
@@ -79,7 +79,7 @@ class RollView: NSView, RollerDelegate {
             label.alignmentMode = "center"
             
             //calculate vertical center
-            let labelHeight = rollString.size(withAttributes: [ NSFontAttributeName: font ]).height
+            let labelHeight = rollString.size(withAttributes: [ NSAttributedStringKey.font: font ]).height
             let labelRect = NSMakeRect(0, 0 - ((self.side - labelHeight) / 2), self.side, self.side)
             
             label.frame = labelRect
@@ -136,12 +136,12 @@ class RollView: NSView, RollerDelegate {
     
     func drawBlank() {
         let instructions = "Click a dice pool on\nthe left to begin" as NSString
-        let style: NSMutableParagraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
+        let style: NSMutableParagraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
         style.alignment = NSTextAlignment.center
         let font = NSFont.boldSystemFont(ofSize: 18)
-        let attributes = [ NSFontAttributeName: font,
-                           NSForegroundColorAttributeName: NSColor.gray,
-                           NSParagraphStyleAttributeName: style ]
+        let attributes = [ NSAttributedStringKey.font: font,
+                           NSAttributedStringKey.foregroundColor: NSColor.gray,
+                           NSAttributedStringKey.paragraphStyle: style ]
         let drawHeight = instructions.size(withAttributes: attributes).height
         let y: CGFloat = (self.frame.height - drawHeight) / 2 + 20
         let rect = NSMakeRect(0.0, y, self.frame.width, drawHeight)
