@@ -27,14 +27,11 @@ class ViewController: NSViewController {
     NotificationCenter.default.addObserver(self, selector: #selector(changeGame(_:)), name: NSNotification.Name(rawValue: "ChangeGame"), object: nil)
   }
   
-  /**
-   * This isn't technically necessary; however, it prevents the window title from visibly changing
-   * at application launch. Maybe there's a better way of doing it?
-   */
   override func awakeFromNib() {
     super.awakeFromNib()
     if let game = UserDefaults.standard.object(forKey: "Game") as? String {
       self.view.window?.title = game
+      NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ChangeGame"), object: nil, userInfo: ["Game": Game(rawValue: game)!])
     }
   }
   
@@ -46,8 +43,12 @@ class ViewController: NSViewController {
   @objc func changeGame(_ notification: Notification) {
     let info = notification.userInfo as! [String: Game]
     let game = info["Game"]!
-    roller.game = info["Game"]!
     
+    change(game: game)
+  }
+  
+  func change(game: Game) {
+    roller.game = game
     switch game {
     case .masquerade:
       slider.integerValue = 6

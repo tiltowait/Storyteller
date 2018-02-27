@@ -14,7 +14,7 @@ protocol RollerDelegate {
 
 class Roller: NSObject {
   private(set) var rolls: [Int] = []
-  @objc public var _specialized: NSNumber = NSControl.StateValue.off as NSNumber {
+  @objc public var _specialized: NSNumber = NSControl.StateValue.on as NSNumber {
     didSet {
       self.updateDelegates()
     }

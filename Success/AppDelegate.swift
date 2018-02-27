@@ -17,14 +17,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   func applicationDidFinishLaunching(_ aNotification: Notification) {
     // Insert code here to initialize your application
     let defaults = UserDefaults.standard
-    let menuItem = NSMenuItem()
     
-    if let game = defaults.object(forKey: "Game") as? String {
-      menuItem.title = game
-    } else {
-      menuItem.title = "Masquerade"
+    guard let string = defaults.object(forKey: "Game") as? String else { return }
+    if let game = Game(rawValue: string) {
+      toggleMenuItems(game: game)
     }
-    changeGame(menuItem)
   }
   
   func applicationWillTerminate(_ aNotification: Notification) {
@@ -38,21 +35,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
   
   @IBAction func changeGame(_ sender: NSMenuItem) {
-    let game: Game
+    guard let game = Game(rawValue: sender.title) else { return }
     
-    switch sender.title {
-    case "Masquerade":
-      game = .masquerade
+    toggleMenuItems(game: game)
+    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ChangeGame"), object: nil, userInfo: ["Game": game])
+  }
+  
+  func toggleMenuItems(game: Game) {
+    switch game {
+    case .masquerade:
       masqueradeMenu.state = .on
       requiemMenu.state = .off
-    case "Requiem":
-      game = .requiem
+    case .requiem:
       masqueradeMenu.state = .off
       requiemMenu.state = .on
-    default:
-      return
     }
-    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ChangeGame"), object: nil, userInfo: ["Game": game])
   }
 }
 
