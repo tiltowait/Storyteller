@@ -12,81 +12,108 @@ protocol RollerDelegate {
     func rollsUpdated(roller: Roller)
 }
 
-public class Roller: NSObject {
-    public private(set) var rolls: [Int] = []
-    @objc public var _specialized: NSNumber = NSControl.StateValue.on as NSNumber {
-        didSet {
-            self.specialized = _specialized == NSControl.StateValue.on as NSNumber
-            self.updateDelegates()
-        }
+class Roller: NSObject {
+  private(set) var rolls: [Int] = []
+  @objc public var _specialized: NSNumber = NSControl.StateValue.off as NSNumber {
+    didSet {
+      self.updateDelegates()
     }
-    @objc public var _difficulty: NSNumber = 6 {
-        didSet {
-            self.updateDelegates()
-        }
+  }
+  @objc public var _difficulty: NSNumber = 6 {
+    didSet {
+      self.updateDelegates()
     }
-    public var specialized = true
-    public var difficulty: Int {
-        get {
-            return _difficulty.intValue
+  }
+  var specialized: Bool { return _specialized == NSControl.StateValue.on as NSNumber }
+  var difficulty: Int {
+    get {
+      return _difficulty.intValue
+    }
+  }
+  var game = Game.masquerade {
+    didSet {
+      rolls.removeAll()
+      self.updateDelegates()
+    }
+  }
+  var explode: Int { return difficulty }
+  
+  private var delegates: [RollerDelegate] = []
+  
+  func roll(dice: Int) {
+    switch game {
+    case .masquerade:
+      rollMasquerade(dice: dice)
+    case .requiem:
+      rollRequiem(dice: dice, again: explode)
+    }
+  }
+  
+  private func rollMasquerade(dice: Int) {
+    rolls.removeAll()
+    
+    for _ in 0..<dice {
+      rolls.append(Int(arc4random_uniform(10)) + 1)
+    }
+    self.updateDelegates()
+  }
+  
+  private func rollRequiem(dice: Int, again: Int) {
+    rolls.removeAll()
+    
+    var pool = dice
+    var i = 0
+    
+    while i < pool {
+      let roll = Int(arc4random_uniform(10)) + 1
+      rolls.append(roll)
+      
+      if roll >= explode { pool += 1 }
+      i += 1
+    }
+    self.updateDelegates()
+  }
+  
+  func successes() -> Int {
+    if rolls.count == 0 {
+      return -2
+    }
+    let target = game == .masquerade ? difficulty : 8
+    var successes = rolls.filter { $0 >= target }.count
+    
+    if game == .masquerade {
+      let failures = rolls.filter { $0 == 1 }.count
+      successes -= failures
+      
+      if specialized {
+        let tens = rolls.filter { $0 == 10 }.count
+        successes += tens
+      }
+      
+      if successes < 0 {
+        if successes == 0 {
+          successes = -1
+        } else {
+          successes = 0
         }
+      }
     }
     
-    private var delegates: [RollerDelegate] = []
-    
-    func roll(dice: Int) {
-        rolls.removeAll()
-        
-        for _ in 0..<dice {
-            rolls.append(Int(arc4random_uniform(10)) + 1)
-        }
-        self.updateDelegates()
+    return successes
+  }
+  
+  func addDelegate(delegate: RollerDelegate) {
+    delegates.append(delegate)
+  }
+  
+  func updateDelegates() {
+    for delegate in delegates {
+      delegate.rollsUpdated(roller: self)
     }
-    
-    func successes() -> Int {
-        if rolls.count == 0 {
-            return -2
-        }
-        
-        var successes = 0
-        var botches = 0
-        var tens = 0
-        var result = 0
-        
-        for roll in rolls {
-            switch roll {
-            case 1:
-                botches += 1
-            case difficulty..<10:
-                successes += 1
-            case 10:
-                successes += 1
-                tens += 1
-            default:
-                break
-            }
-        }
-        
-        if botches > 0 && successes == 0 {
-            result = -1
-        }
-        else if successes > 0 {
-            result = successes - botches + (specialized ? tens : 0)
-            if result < 0 {
-                result = 0
-            }
-        }
-        
-        return result
-    }
-    
-    func addDelegate(delegate: RollerDelegate) {
-        delegates.append(delegate)
-    }
-    
-    func updateDelegates() {
-        for delegate in delegates {
-            delegate.rollsUpdated(roller: self)
-        }
-    }
+  }
+}
+
+enum Game {
+  case masquerade
+  case requiem
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,7 +23,28 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem title="Preferences ..." id="L6C-tI-1bM">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Preferences ..." id="O0j-iL-reg">
+                                                <items>
+                                                    <menuItem title="Select Game" enabled="NO" id="RsM-2g-W8d">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
+                                                    <menuItem title="Masquerade" state="on" id="R9y-da-73W">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="changeGame:" target="Voe-Tx-rLC" id="sjy-go-Aya"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Requiem" id="Ssb-o9-xC9">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="changeGame:" target="Voe-Tx-rLC" id="has-EN-TYH"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -655,7 +676,12 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Success" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Success" customModuleProvider="target">
+                    <connections>
+                        <outlet property="masqueradeMenu" destination="R9y-da-73W" id="Zg8-BY-8sQ"/>
+                        <outlet property="requiemMenu" destination="Ssb-o9-xC9" id="40J-YL-NcL"/>
+                    </connections>
+                </customObject>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
@@ -671,6 +697,9 @@
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <value key="minSize" type="size" width="605" height="200"/>
                         <value key="maxSize" type="size" width="605" height="200"/>
+                        <connections>
+                            <outlet property="delegate" destination="B8D-0N-5wS" id="og5-dX-vvY"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
@@ -835,7 +864,10 @@
                     <connections>
                         <outlet property="rollView" destination="7eI-0B-bad" id="kub-gX-Hg2"/>
                         <outlet property="roller" destination="O9w-eh-9uZ" id="PSF-O8-2hm"/>
+                        <outlet property="slider" destination="2pa-gH-scg" id="70c-3Q-qeg"/>
+                        <outlet property="specializedCheckBox" destination="H8b-gd-aGJ" id="Ghm-Bc-icA"/>
                         <outlet property="successView" destination="toN-1v-fhm" id="Pbo-ut-wjf"/>
+                        <outlet property="targetLabel" destination="Qcu-tR-cN7" id="NiG-c2-SrL"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
