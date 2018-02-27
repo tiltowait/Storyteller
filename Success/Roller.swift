@@ -41,24 +41,6 @@ class Roller: NSObject {
   private var delegates: [RollerDelegate] = []
   
   func roll(dice: Int) {
-    switch game {
-    case .masquerade:
-      rollMasquerade(dice: dice)
-    case .requiem:
-      rollRequiem(dice: dice, again: explode)
-    }
-  }
-  
-  private func rollMasquerade(dice: Int) {
-    rolls.removeAll()
-    
-    for _ in 0..<dice {
-      rolls.append(Int(arc4random_uniform(10)) + 1)
-    }
-    self.updateDelegates()
-  }
-  
-  private func rollRequiem(dice: Int, again: Int) {
     rolls.removeAll()
     
     var pool = dice
@@ -68,10 +50,10 @@ class Roller: NSObject {
       let roll = Int(arc4random_uniform(10)) + 1
       rolls.append(roll)
       
-      if roll >= explode { pool += 1 }
+      if game == .requiem && roll >= explode { pool += 1 }
       i += 1
     }
-    self.updateDelegates()
+    updateDelegates()
   }
   
   func successes() -> Int {
@@ -113,7 +95,7 @@ class Roller: NSObject {
   }
 }
 
-enum Game {
-  case masquerade
-  case requiem
+enum Game: String {
+  case masquerade = "Masquerade"
+  case requiem = "Requiem"
 }

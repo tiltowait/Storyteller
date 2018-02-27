@@ -27,6 +27,17 @@ class ViewController: NSViewController {
     NotificationCenter.default.addObserver(self, selector: #selector(changeGame(_:)), name: NSNotification.Name(rawValue: "ChangeGame"), object: nil)
   }
   
+  /**
+   * This isn't technically necessary; however, it prevents the window title from visibly changing
+   * at application launch. Maybe there's a better way of doing it?
+   */
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    if let game = UserDefaults.standard.object(forKey: "Game") as? String {
+      self.view.window?.title = game
+    }
+  }
+  
   @IBAction func rollDice(_ sender: NSMatrix) {
     let pool = sender.selectedCell()!.tag
     roller.roll(dice: pool)
@@ -43,11 +54,15 @@ class ViewController: NSViewController {
       targetLabel.stringValue = "6"
       roller._difficulty = 6
       specializedCheckBox.isEnabled = true
+      
+      self.view.window?.title = "Masquerade"
     case .requiem:
       slider.integerValue = 10
       targetLabel.stringValue = "10"
       roller._difficulty = 10
       specializedCheckBox.isEnabled = false
+      
+      self.view.window?.title = "Requiem"
     }
   }
 }

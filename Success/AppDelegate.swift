@@ -16,10 +16,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   
   func applicationDidFinishLaunching(_ aNotification: Notification) {
     // Insert code here to initialize your application
+    let defaults = UserDefaults.standard
+    let menuItem = NSMenuItem()
+    
+    if let game = defaults.object(forKey: "Game") as? String {
+      menuItem.title = game
+    } else {
+      menuItem.title = "Masquerade"
+    }
+    changeGame(menuItem)
   }
   
   func applicationWillTerminate(_ aNotification: Notification) {
     // Insert code here to tear down your application
+    let defaults = UserDefaults.standard
+    defaults.set(game().rawValue, forKey: "Game")
+  }
+  
+  func game() -> Game {
+    return requiemMenu.state == .on ? .requiem : .masquerade
   }
   
   @IBAction func changeGame(_ sender: NSMenuItem) {
