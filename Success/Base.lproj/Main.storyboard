@@ -721,96 +721,98 @@
                                 <rect key="frame" x="20" y="20" width="220" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                <size key="cellSize" width="55" height="32"/>
+                                <size key="cellSize" width="44" height="40"/>
                                 <buttonCell key="prototype" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="akM-K2-dqf">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <cells>
                                     <column>
-                                        <buttonCell type="push" title="1" bezelStyle="rounded" alignment="center" borderStyle="border" tag="1" imageScaling="proportionallyDown" inset="2" id="4hU-2o-363">
+                                        <buttonCell type="bevel" title="1" bezelStyle="regularSquare" alignment="center" borderStyle="border" tag="1" imageScaling="proportionallyDown" inset="2" id="4hU-2o-363">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <buttonCell type="push" title="5" bezelStyle="rounded" alignment="center" borderStyle="border" tag="5" imageScaling="proportionallyDown" inset="2" id="tnI-lP-a7Y">
+                                        <buttonCell type="bevel" title="6" bezelStyle="regularSquare" alignment="center" borderStyle="border" tag="6" imageScaling="proportionallyDown" inset="2" id="tnI-lP-a7Y">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <buttonCell type="push" title="9" bezelStyle="rounded" alignment="center" borderStyle="border" tag="9" imageScaling="proportionallyDown" inset="2" id="33R-Zk-oCF">
+                                        <buttonCell type="bevel" title="11" bezelStyle="regularSquare" alignment="center" borderStyle="border" tag="11" imageScaling="proportionallyDown" inset="2" id="33R-Zk-oCF">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <buttonCell type="push" title="13" bezelStyle="rounded" alignment="center" borderStyle="border" tag="13" imageScaling="proportionallyDown" inset="2" id="85r-hl-3Ja">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <buttonCell type="push" title="17" bezelStyle="rounded" alignment="center" borderStyle="border" tag="17" imageScaling="proportionallyDown" inset="2" id="2Mj-b1-AUm">
+                                        <buttonCell type="bevel" title="16" bezelStyle="regularSquare" alignment="center" borderStyle="border" tag="16" imageScaling="proportionallyDown" inset="2" id="85r-hl-3Ja">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                     </column>
                                     <column>
-                                        <buttonCell type="push" title="2" bezelStyle="rounded" alignment="center" borderStyle="border" tag="2" imageScaling="proportionallyDown" inset="2" id="uUD-3P-PCL">
+                                        <buttonCell type="bevel" title="2" bezelStyle="regularSquare" alignment="center" borderStyle="border" tag="2" imageScaling="proportionallyDown" inset="2" id="uUD-3P-PCL">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <buttonCell type="push" title="6" bezelStyle="rounded" alignment="center" borderStyle="border" tag="6" imageScaling="proportionallyDown" inset="2" id="aWE-dI-W7e">
+                                        <buttonCell type="bevel" title="7" bezelStyle="regularSquare" alignment="center" borderStyle="border" tag="7" imageScaling="proportionallyDown" inset="2" id="aWE-dI-W7e">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <buttonCell type="push" title="10" bezelStyle="rounded" alignment="center" borderStyle="border" tag="10" imageScaling="proportionallyDown" inset="2" id="roh-Je-XEw">
+                                        <buttonCell type="bevel" title="12" bezelStyle="regularSquare" alignment="center" borderStyle="border" tag="12" imageScaling="proportionallyDown" inset="2" id="roh-Je-XEw">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <buttonCell type="push" title="14" bezelStyle="rounded" alignment="center" borderStyle="border" tag="14" imageScaling="proportionallyDown" inset="2" id="oPg-oB-9P1">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <buttonCell type="push" title="18" bezelStyle="rounded" alignment="center" borderStyle="border" tag="18" imageScaling="proportionallyDown" inset="2" id="GB2-h4-imt">
+                                        <buttonCell type="bevel" title="17" bezelStyle="regularSquare" alignment="center" borderStyle="border" tag="17" imageScaling="proportionallyDown" inset="2" id="oPg-oB-9P1">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                     </column>
                                     <column>
-                                        <buttonCell type="push" title="3" bezelStyle="rounded" alignment="center" borderStyle="border" tag="3" imageScaling="proportionallyDown" inset="2" id="fK5-Cd-bTj">
+                                        <buttonCell type="bevel" title="3" bezelStyle="regularSquare" alignment="center" borderStyle="border" tag="3" imageScaling="proportionallyDown" inset="2" id="fK5-Cd-bTj">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <buttonCell type="push" title="7" bezelStyle="rounded" alignment="center" borderStyle="border" tag="7" imageScaling="proportionallyDown" inset="2" id="lbS-ft-6Gs">
+                                        <buttonCell type="bevel" title="8" bezelStyle="regularSquare" alignment="center" borderStyle="border" tag="8" imageScaling="proportionallyDown" inset="2" id="lbS-ft-6Gs">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <buttonCell type="push" title="11" bezelStyle="rounded" alignment="center" borderStyle="border" tag="11" imageScaling="proportionallyDown" inset="2" id="qK1-fT-U7A">
+                                        <buttonCell type="bevel" title="13" bezelStyle="regularSquare" alignment="center" borderStyle="border" tag="13" imageScaling="proportionallyDown" inset="2" id="qK1-fT-U7A">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <buttonCell type="push" title="15" bezelStyle="rounded" alignment="center" borderStyle="border" tag="15" imageScaling="proportionallyDown" inset="2" id="SJ5-Jt-BZf">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <buttonCell type="push" title="19" bezelStyle="rounded" alignment="center" borderStyle="border" tag="19" imageScaling="proportionallyDown" inset="2" id="DRx-GZ-RYf">
+                                        <buttonCell type="bevel" title="18" bezelStyle="regularSquare" alignment="center" borderStyle="border" tag="18" imageScaling="proportionallyDown" inset="2" id="SJ5-Jt-BZf">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                     </column>
                                     <column>
-                                        <buttonCell type="push" title="4" bezelStyle="rounded" alignment="center" borderStyle="border" tag="4" imageScaling="proportionallyDown" inset="2" id="HaG-qe-j8S">
+                                        <buttonCell type="bevel" title="4" bezelStyle="regularSquare" alignment="center" borderStyle="border" tag="4" imageScaling="proportionallyDown" inset="2" id="HaG-qe-j8S">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <buttonCell type="push" title="8" bezelStyle="rounded" alignment="center" borderStyle="border" tag="8" imageScaling="proportionallyDown" inset="2" id="PAK-bn-gIb">
+                                        <buttonCell type="bevel" title="9" bezelStyle="regularSquare" alignment="center" borderStyle="border" tag="9" imageScaling="proportionallyDown" inset="2" id="PAK-bn-gIb">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <buttonCell type="push" title="12" bezelStyle="rounded" alignment="center" borderStyle="border" tag="12" imageScaling="proportionallyDown" inset="2" id="qhq-ql-Bj9">
+                                        <buttonCell type="bevel" title="14" bezelStyle="regularSquare" alignment="center" borderStyle="border" tag="14" imageScaling="proportionallyDown" inset="2" id="qhq-ql-Bj9">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <buttonCell type="push" title="16" bezelStyle="rounded" alignment="center" borderStyle="border" tag="16" imageScaling="proportionallyDown" inset="2" id="aZr-iY-aBj">
+                                        <buttonCell type="bevel" title="19" bezelStyle="regularSquare" alignment="center" borderStyle="border" tag="19" imageScaling="proportionallyDown" inset="2" id="aZr-iY-aBj">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <buttonCell type="push" title="20" bezelStyle="rounded" alignment="center" borderStyle="border" tag="20" imageScaling="proportionallyDown" inset="2" id="L2p-qP-JoL">
+                                    </column>
+                                    <column>
+                                        <buttonCell type="bevel" title="5" bezelStyle="regularSquare" alignment="center" borderStyle="border" tag="5" imageScaling="proportionallyDown" inset="2" id="JRx-v0-hlN">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <buttonCell type="bevel" title="10" bezelStyle="regularSquare" alignment="center" borderStyle="border" tag="10" imageScaling="proportionallyDown" inset="2" id="gZ8-rc-mkR">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <buttonCell type="bevel" title="15" bezelStyle="regularSquare" alignment="center" borderStyle="border" tag="15" imageScaling="proportionallyDown" inset="2" id="NQW-Zf-iK2">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <buttonCell type="bevel" title="20" bezelStyle="regularSquare" alignment="center" borderStyle="border" tag="20" imageScaling="proportionallyDown" inset="2" id="MdX-Vn-OWf">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
