@@ -63,6 +63,9 @@ class RollView: NSView, RollerDelegate {
         case 1..<8:
           foregroundColor = NSColor.black
           backgroundColor = NSColor.init(red: shade, green: shade, blue: shade, alpha: 1.0)
+        case 10:
+          foregroundColor = NSColor.white
+          backgroundColor = NSColor.green
         default:
           foregroundColor = NSColor.black
           backgroundColor = NSColor.init(red: 0.7843137255, green: 1.0, blue: 0.7843137255, alpha: 1.0)
