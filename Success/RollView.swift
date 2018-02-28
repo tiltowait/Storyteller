@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class RollView: NSView, RollerDelegate {
+class RollView: NSView {
   let delayIncrement = 0.08
   
   let side: CGFloat = 35.0
@@ -16,7 +16,7 @@ class RollView: NSView, RollerDelegate {
   let shade: CGFloat = 251.0 / 255.0
   
   var rolls: [Int] = []
-  var difficulty: Int = 6
+  var target: Int = 6
   var specialized = false
   var totalUpdate = true
   var game: Game = .masquerade
@@ -26,7 +26,7 @@ class RollView: NSView, RollerDelegate {
     
     // Drawing code here.
     if self.rolls.count == 0 { //give some instructions if we haven't rolled anything
-      drawBlank()
+      drawInstructions()
       return
     }
     
@@ -46,7 +46,7 @@ class RollView: NSView, RollerDelegate {
         case 1:
           foregroundColor = NSColor.white
           backgroundColor = NSColor.red
-        case self.difficulty...10:
+        case self.target...10:
           foregroundColor = NSColor.black
           backgroundColor = NSColor.init(red: 0.7843137255, green: 1.0, blue: 0.7843137255, alpha: 1.0)
           
@@ -63,7 +63,7 @@ class RollView: NSView, RollerDelegate {
         case 1..<8:
           foregroundColor = NSColor.black
           backgroundColor = NSColor.init(red: shade, green: shade, blue: shade, alpha: 1.0)
-        case 10:
+        case target...10:
           foregroundColor = NSColor.white
           backgroundColor = NSColor.green
         default:
@@ -126,19 +126,19 @@ class RollView: NSView, RollerDelegate {
   }
   
   func set(roller: Roller) {
-    self.set(rolls: roller.rolls, difficulty: roller.difficulty, specialized: roller.specialized)
+    self.set(rolls: roller.rolls, target: roller.target, specialized: roller.specialized)
   }
   
-  func set(rolls: [Int], difficulty: Int, specialized: Bool) {
+  func set(rolls: [Int], target: Int, specialized: Bool) {
     self.rolls = rolls
-    self.difficulty = difficulty
+    self.target = target
     self.totalUpdate = true
-    self.needsDisplay = true
     self.specialized = specialized
+    self.needsDisplay = true
   }
   
-  func set(difficulty: Int) {
-    self.difficulty = difficulty
+  func set(target: Int) {
+    self.target = target
     self.totalUpdate = false
     self.needsDisplay = true
   }
@@ -149,7 +149,7 @@ class RollView: NSView, RollerDelegate {
     self.needsDisplay = true
   }
   
-  func drawBlank() {
+  func drawInstructions() {
     self.layer?.sublayers = nil
     
     let instructions = "Click a dice pool on\nthe left to begin" as NSString
@@ -167,15 +167,17 @@ class RollView: NSView, RollerDelegate {
   }
   
   //delegate methods
-  func rollsUpdated(roller: Roller) {
+  func display(roller: Roller) {
     game = roller.game
     //need to see what we need to update
     if self.rolls == roller.rolls {
-      if roller.difficulty == self.difficulty {
+      if roller.target == self.target {
         self.set(specialized: roller.specialized)
       }
       else {
-        self.set(difficulty: roller.difficulty)
+        if roller.game == .masquerade {
+          self.set(target: roller.target)
+        }
       }
     }
     else {

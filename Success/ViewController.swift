@@ -11,19 +11,17 @@ import Cocoa
 class ViewController: NSViewController {
   @IBOutlet weak var rollView: RollView!
   @IBOutlet weak var successView: SuccessView!
-  @IBOutlet var roller: Roller!
   
   @IBOutlet weak var slider: NSSlider!
   @IBOutlet weak var targetLabel: NSTextField!
   @IBOutlet weak var specializedCheckBox: NSButton!
   
+  var roller = Roller()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
-    self.roller.addDelegate(delegate: self.rollView)
-    self.roller.addDelegate(delegate: self.successView)
-    
     NotificationCenter.default.addObserver(self, selector: #selector(changeGame(_:)), name: NSNotification.Name(rawValue: "ChangeGame"), object: nil)
   }
   
@@ -38,6 +36,8 @@ class ViewController: NSViewController {
   @IBAction func rollDice(_ sender: NSMatrix) {
     let pool = sender.selectedCell()!.tag
     roller.roll(dice: pool)
+    
+    updateDisplays()
   }
   
   @objc func changeGame(_ notification: Notification) {
@@ -51,19 +51,40 @@ class ViewController: NSViewController {
     roller.game = game
     switch game {
     case .masquerade:
+      slider.minValue = 3.0
+      slider.numberOfTickMarks = 8
       slider.integerValue = 6
       targetLabel.stringValue = "6"
-      roller._difficulty = 6
+      roller.target = 6
       specializedCheckBox.isEnabled = true
       
       self.view.window?.title = "Masquerade"
     case .requiem:
+      slider.minValue = 8
+      slider.numberOfTickMarks = 3
       slider.integerValue = 10
       targetLabel.stringValue = "10"
-      roller._difficulty = 10
+      roller.target = 10
       specializedCheckBox.isEnabled = false
       
       self.view.window?.title = "Requiem"
     }
+    updateDisplays()
+  }
+  
+  @IBAction func changeTarget(_ sender: NSSlider) {
+    roller.target = sender.integerValue
+    targetLabel.integerValue = sender.integerValue
+    updateDisplays()
+  }
+  
+  @IBAction func toggleSpecialized(_ sender: NSButton) {
+    roller.specialized = !roller.specialized
+    updateDisplays()
+  }
+  
+  func updateDisplays() {
+    rollView.display(roller: roller)
+    successView.display(successes: roller.successes)
   }
 }

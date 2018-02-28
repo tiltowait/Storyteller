@@ -8,37 +8,15 @@
 
 import Cocoa
 
-protocol RollerDelegate {
-    func rollsUpdated(roller: Roller)
-}
-
 class Roller: NSObject {
   private(set) var rolls: [Int] = []
-  @objc public var _specialized: NSNumber = NSControl.StateValue.on as NSNumber {
-    didSet {
-      self.updateDelegates()
-    }
-  }
-  @objc public var _difficulty: NSNumber = 6 {
-    didSet {
-      self.updateDelegates()
-    }
-  }
-  var specialized: Bool { return _specialized == NSControl.StateValue.on as NSNumber }
-  var difficulty: Int {
-    get {
-      return _difficulty.intValue
-    }
-  }
+  var specialized = true
+  var target = 6
   var game = Game.masquerade {
     didSet {
       rolls.removeAll()
-      self.updateDelegates()
     }
   }
-  var explode: Int { return difficulty }
-  
-  private var delegates: [RollerDelegate] = []
   
   func roll(dice: Int) {
     rolls.removeAll()
@@ -50,17 +28,16 @@ class Roller: NSObject {
       let roll = Int(arc4random_uniform(10)) + 1
       rolls.append(roll)
       
-      if game == .requiem && roll >= explode { pool += 1 }
+      if game == .requiem && roll >= target { pool += 1 }
       i += 1
     }
-    updateDelegates()
   }
   
-  func successes() -> Int {
+  var successes: Int {
     if rolls.count == 0 {
       return -2
     }
-    let target = game == .masquerade ? difficulty : 8
+    let target = game == .masquerade ? self.target : 8
     var successes = rolls.filter { $0 >= target }.count
     
     if game == .masquerade {
@@ -80,18 +57,7 @@ class Roller: NSObject {
         }
       }
     }
-    
     return successes
-  }
-  
-  func addDelegate(delegate: RollerDelegate) {
-    delegates.append(delegate)
-  }
-  
-  func updateDelegates() {
-    for delegate in delegates {
-      delegate.rollsUpdated(roller: self)
-    }
   }
 }
 
