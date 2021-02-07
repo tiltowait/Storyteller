@@ -3,7 +3,6 @@
 //  Success
 //
 //  Created by Jared Lindsay on 11/1/16.
-//  Copyright © 2016 Baciarini's Martial Arts Inc. All rights reserved.
 //
 
 import Cocoa
@@ -49,7 +48,7 @@ class Roller: NSObject {
         successes += tens
       }
       
-      if successes < 0 {
+      if successes <= 0 {
         if successes == 0 {
           successes = -1
         } else {

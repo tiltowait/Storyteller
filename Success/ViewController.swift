@@ -2,8 +2,7 @@
 //  ViewController.swift
 //  Success
 //
-//  Created by BMA Staff on 10/28/16.
-//  Copyright © 2016 Baciarini's Martial Arts Inc. All rights reserved.
+//  Created by Jared Lindsay on 10/28/16.
 //
 
 import Cocoa

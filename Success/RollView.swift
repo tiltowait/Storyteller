@@ -3,7 +3,6 @@
 //  Success
 //
 //  Created by Jared Lindsay on 10/31/16.
-//  Copyright © 2016 Baciarini's Martial Arts Inc. All rights reserved.
 //
 
 import Cocoa
@@ -44,31 +43,31 @@ class RollView: NSView {
       if game == .masquerade {
         switch roll {
         case 1:
-          foregroundColor = NSColor.white
-          backgroundColor = NSColor.red
+          foregroundColor = .white
+          backgroundColor = .systemRed
         case self.target...10:
-          foregroundColor = NSColor.black
-          backgroundColor = NSColor.init(red: 0.7843137255, green: 1.0, blue: 0.7843137255, alpha: 1.0)
+          foregroundColor = .black
+          backgroundColor = .init(red: 0.7843137255, green: 1.0, blue: 0.7843137255, alpha: 1.0)
           
           if specialized && roll == 10 {
-            foregroundColor = NSColor.white
-            backgroundColor = NSColor.green
+            foregroundColor = .white
+            backgroundColor = .systemGreen
           }
         default:
-          foregroundColor = NSColor.black
-          backgroundColor = NSColor.init(red: shade, green: shade, blue: shade, alpha: 1.0)
+          foregroundColor = .black
+          backgroundColor = .init(red: shade, green: shade, blue: shade, alpha: 1.0)
         }
       } else {
         switch roll {
         case 1..<8:
-          foregroundColor = NSColor.black
-          backgroundColor = NSColor.init(red: shade, green: shade, blue: shade, alpha: 1.0)
+          foregroundColor = .black
+          backgroundColor = .init(red: shade, green: shade, blue: shade, alpha: 1.0)
         case target...10:
-          foregroundColor = NSColor.white
-          backgroundColor = NSColor.green
+          foregroundColor = .white
+          backgroundColor = .systemGreen
         default:
-          foregroundColor = NSColor.black
-          backgroundColor = NSColor.init(red: 0.7843137255, green: 1.0, blue: 0.7843137255, alpha: 1.0)
+          foregroundColor = .black
+          backgroundColor = .init(red: 0.7843137255, green: 1.0, blue: 0.7843137255, alpha: 1.0)
         }
       }
       
@@ -91,10 +90,10 @@ class RollView: NSView {
       label.foregroundColor = foregroundColor.cgColor
       label.font = font
       label.fontSize = 18
-      label.alignmentMode = "center"
+      label.alignmentMode = .center
       
       //calculate vertical center
-      let labelHeight = rollString.size(withAttributes: [ NSAttributedStringKey.font: font ]).height
+      let labelHeight = rollString.size(withAttributes: [ NSAttributedString.Key.font: font ]).height
       let labelRect = NSMakeRect(0, 0 - ((self.side - labelHeight) / 2), self.side, self.side)
       
       label.frame = labelRect
@@ -107,7 +106,7 @@ class RollView: NSView {
         animation.toValue = 1.0
         animation.duration = 0.25
         animation.isRemovedOnCompletion = false
-        animation.fillMode = kCAFillModeForwards
+        animation.fillMode = .forwards
         animation.beginTime = delay
         
         layer.opacity = 0.0
@@ -156,9 +155,9 @@ class RollView: NSView {
     let style: NSMutableParagraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
     style.alignment = NSTextAlignment.center
     let font = NSFont.boldSystemFont(ofSize: 18)
-    let attributes = [ NSAttributedStringKey.font: font,
-                       NSAttributedStringKey.foregroundColor: NSColor.gray,
-                       NSAttributedStringKey.paragraphStyle: style ]
+    let attributes = [ NSAttributedString.Key.font: font,
+                       NSAttributedString.Key.foregroundColor: NSColor.systemGray,
+                       NSAttributedString.Key.paragraphStyle: style ]
     let drawHeight = instructions.size(withAttributes: attributes).height
     let y: CGFloat = (self.frame.height - drawHeight) / 2 + 20
     let rect = NSMakeRect(0.0, y, self.frame.width, drawHeight)
@@ -185,4 +184,3 @@ class RollView: NSView {
     }
   }
 }
-

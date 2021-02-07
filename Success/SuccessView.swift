@@ -3,7 +3,6 @@
 //  Success
 //
 //  Created by Jared Lindsay on 10/31/16.
-//  Copyright © 2016 Baciarini's Martial Arts Inc. All rights reserved.
 //
 
 import Cocoa
@@ -19,7 +18,7 @@ class SuccessView: NSView {
     let oldSublayers = self.layer?.sublayers
     
     var backgroundColor = NSColor.init(red: shade, green: shade, blue: shade, alpha: 1.0)
-    var foregroundColor = NSColor.gray
+    var foregroundColor = NSColor.systemGray
     var string = "-"
     
     if self.successes != -2 {
@@ -28,27 +27,27 @@ class SuccessView: NSView {
     
     switch self.successes {
     case -1:
-      backgroundColor = NSColor.black
-      foregroundColor = NSColor.red
+      backgroundColor = .black
+      foregroundColor = .systemRed
       string = "B"
     case 0:
-      backgroundColor = NSColor.init(red: 1.0, green: 200.0/255.0, blue: 200.0/255.0, alpha: 1.0)
-      foregroundColor = NSColor.black
+      backgroundColor = .init(red: 1.0, green: 200.0/255.0, blue: 200.0/255.0, alpha: 1.0)
+      foregroundColor = .black
     case 1:
-      backgroundColor = NSColor.orange
-      foregroundColor = NSColor.white
+      backgroundColor = .systemOrange
+      foregroundColor = .white
     case 2:
-      backgroundColor = NSColor.yellow
-      foregroundColor = NSColor.black
+      backgroundColor = .systemYellow
+      foregroundColor = .black
     case 3:
-      backgroundColor = NSColor.init(red: 200.0/255, green: 1.0, blue: 200.0/255, alpha: 1.0)
-      foregroundColor = NSColor.black
+      backgroundColor = .init(red: 200.0/255, green: 1.0, blue: 200.0/255, alpha: 1.0)
+      foregroundColor = .black
     case 4:
-      backgroundColor = NSColor.green
-      foregroundColor = NSColor.white
+      backgroundColor = .systemGreen
+      foregroundColor = .white
     case 5...100:
-      backgroundColor = NSColor.blue
-      foregroundColor = NSColor.white
+      backgroundColor = .systemBlue
+      foregroundColor = .white
     default:
       break
     }
@@ -66,13 +65,13 @@ class SuccessView: NSView {
     let font = NSFont.boldSystemFont(ofSize: 70)
     
     successesLabel.string = string
-    successesLabel.alignmentMode = "center"
+    successesLabel.alignmentMode = .center
     successesLabel.font = font
     successesLabel.fontSize = 70
     successesLabel.contentsScale = NSScreen.main!.backingScaleFactor
     successesLabel.foregroundColor = foregroundColor.cgColor
     
-    let successesHeight = string.size(withAttributes: [ NSAttributedStringKey.font: font ]).height
+    let successesHeight = string.size(withAttributes: [ NSAttributedString.Key.font: font ]).height
     let delta: CGFloat = self.successes < 0 ? 0 : 14
     let stringRect = NSMakeRect(rect.origin.x, rect.origin.y - (rect.height - successesHeight) / 2 + delta, rect.width, rect.height)
     
@@ -86,12 +85,12 @@ class SuccessView: NSView {
       title.font = font
       title.fontSize = 18
       
-      let titleHeight = "SUCCESS".size(withAttributes: [ NSAttributedStringKey.font: NSFont.boldSystemFont(ofSize: 18) ]).height
+      let titleHeight = "SUCCESS".size(withAttributes: [ NSAttributedString.Key.font: NSFont.boldSystemFont(ofSize: 18) ]).height
       
       title.frame = NSMakeRect(rect.origin.x, -rect.height + titleHeight + 7, rect.width, rect.height)
       title.foregroundColor = foregroundColor.cgColor
       title.contentsScale = NSScreen.main!.backingScaleFactor
-      title.alignmentMode = "center"
+      title.alignmentMode = .center
       
       layer.addSublayer(title)
     }
@@ -122,4 +121,3 @@ class SuccessView: NSView {
     self.needsDisplay = true
   }
 }
-
