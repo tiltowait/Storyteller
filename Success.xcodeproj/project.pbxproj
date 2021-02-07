@@ -10,6 +10,7 @@
 		12056A701DC985C30090961D /* Roller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12056A6F1DC985C30090961D /* Roller.swift */; };
 		12210BBA1DC7E0ED0010C4B3 /* RollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12210BB91DC7E0ED0010C4B3 /* RollView.swift */; };
 		126A79C11DC82F760003A2AD /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126A79C01DC82F760003A2AD /* SuccessView.swift */; };
+		28C06D6225CFC64700D1E907 /* NSColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C06D6125CFC64700D1E907 /* NSColor+.swift */; };
 		D123DA651DC3F2A400499622 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D123DA641DC3F2A400499622 /* AppDelegate.swift */; };
 		D123DA671DC3F2A400499622 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D123DA661DC3F2A400499622 /* ViewController.swift */; };
 		D123DA691DC3F2A400499622 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D123DA681DC3F2A400499622 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 		12056A6F1DC985C30090961D /* Roller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Roller.swift; sourceTree = "<group>"; };
 		12210BB91DC7E0ED0010C4B3 /* RollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RollView.swift; sourceTree = "<group>"; };
 		126A79C01DC82F760003A2AD /* SuccessView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
+		28C06D6125CFC64700D1E907 /* NSColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSColor+.swift"; sourceTree = "<group>"; };
 		D123DA611DC3F2A400499622 /* Success.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Success.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D123DA641DC3F2A400499622 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D123DA661DC3F2A400499622 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				126A79C01DC82F760003A2AD /* SuccessView.swift */,
 				12056A6F1DC985C30090961D /* Roller.swift */,
 				D123DA681DC3F2A400499622 /* Assets.xcassets */,
+				28C06D6125CFC64700D1E907 /* NSColor+.swift */,
 				D123DA6A1DC3F2A400499622 /* Main.storyboard */,
 				12210BB91DC7E0ED0010C4B3 /* RollView.swift */,
 				D123DA6D1DC3F2A400499622 /* Info.plist */,
@@ -144,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				126A79C11DC82F760003A2AD /* SuccessView.swift in Sources */,
+				28C06D6225CFC64700D1E907 /* NSColor+.swift in Sources */,
 				12056A701DC985C30090961D /* Roller.swift in Sources */,
 				12210BBA1DC7E0ED0010C4B3 /* RollView.swift in Sources */,
 				D123DA671DC3F2A400499622 /* ViewController.swift in Sources */,
@@ -217,12 +221,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 			};
 			name = Debug;
 		};
@@ -272,10 +277,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 			};
 			name = Release;
 		};

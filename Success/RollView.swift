@@ -12,7 +12,6 @@ class RollView: NSView {
   
   let side: CGFloat = 35.0
   let spacing: CGFloat = 5.0
-  let shade: CGFloat = 251.0 / 255.0
   
   var rolls: [Int] = []
   var target: Int = 6
@@ -47,7 +46,7 @@ class RollView: NSView {
           backgroundColor = .systemRed
         case self.target...10:
           foregroundColor = .black
-          backgroundColor = .init(red: 0.7843137255, green: 1.0, blue: 0.7843137255, alpha: 1.0)
+          backgroundColor = .lightGreen
           
           if specialized && roll == 10 {
             foregroundColor = .white
@@ -55,19 +54,19 @@ class RollView: NSView {
           }
         default:
           foregroundColor = .black
-          backgroundColor = .init(red: shade, green: shade, blue: shade, alpha: 1.0)
+          backgroundColor = .lightGray
         }
       } else {
         switch roll {
         case 1..<8:
           foregroundColor = .black
-          backgroundColor = .init(red: shade, green: shade, blue: shade, alpha: 1.0)
+          backgroundColor = .lightGray
         case target...10:
           foregroundColor = .white
           backgroundColor = .systemGreen
         default:
           foregroundColor = .black
-          backgroundColor = .init(red: 0.7843137255, green: 1.0, blue: 0.7843137255, alpha: 1.0)
+          backgroundColor = .lightGreen
         }
       }
       

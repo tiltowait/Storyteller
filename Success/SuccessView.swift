@@ -8,7 +8,6 @@
 import Cocoa
 
 class SuccessView: NSView {
-  let shade: CGFloat = 220.0/255.0
   var successes = -2
   
   override func draw(_ dirtyRect: NSRect) {
@@ -17,7 +16,7 @@ class SuccessView: NSView {
     // Drawing code here.
     let oldSublayers = self.layer?.sublayers
     
-    var backgroundColor = NSColor.init(red: shade, green: shade, blue: shade, alpha: 1.0)
+    var backgroundColor = NSColor.lightGray
     var foregroundColor = NSColor.systemGray
     var string = "-"
     
@@ -31,7 +30,7 @@ class SuccessView: NSView {
       foregroundColor = .systemRed
       string = "B"
     case 0:
-      backgroundColor = .init(red: 1.0, green: 200.0/255.0, blue: 200.0/255.0, alpha: 1.0)
+      backgroundColor = .lightRed
       foregroundColor = .black
     case 1:
       backgroundColor = .systemOrange
@@ -40,7 +39,7 @@ class SuccessView: NSView {
       backgroundColor = .systemYellow
       foregroundColor = .black
     case 3:
-      backgroundColor = .init(red: 200.0/255, green: 1.0, blue: 200.0/255, alpha: 1.0)
+      backgroundColor = .lightGreen
       foregroundColor = .black
     case 4:
       backgroundColor = .systemGreen
