@@ -50,8 +50,8 @@ class ViewController: NSViewController {
     roller.game = game
     switch game {
     case .masquerade:
-      slider.minValue = 3.0
-      slider.numberOfTickMarks = 8
+      slider.minValue = 2.0
+      slider.numberOfTickMarks = 9
       slider.integerValue = 6
       targetLabel.stringValue = "6"
       roller.target = 6
