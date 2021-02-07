@@ -78,7 +78,7 @@ class ViewController: NSViewController {
   }
   
   @IBAction func toggleSpecialized(_ sender: NSButton) {
-    roller.specialized = !roller.specialized
+    roller.specialized.toggle()
     updateDisplays()
   }
   
