@@ -8,7 +8,23 @@
 import Cocoa
 
 class SuccessView: NSView {
-  var result: RollResult = .none
+  /// Setting the `result` causes the view to redraw.
+  var result: RollResult = .none {
+    didSet {
+      self.needsDisplay = true
+    }
+  }
+  lazy var animation: CABasicAnimation = {
+    let animation = CABasicAnimation(keyPath: "opacity")
+    animation.fromValue = 0.0
+    animation.toValue = 1.0
+    animation.duration = 0.15
+    
+    return animation
+  }()
+  lazy var backgroundRect: NSRect = {
+    NSMakeRect(0.0, 0.0, self.frame.width, self.frame.height)
+  }()
   
   override func draw(_ dirtyRect: NSRect) {
     super.draw(dirtyRect)
@@ -29,7 +45,6 @@ class SuccessView: NSView {
       backgroundColor = .systemRed
       foregroundColor = .white
     case .failure:
-      //string = "0"
       successes = 0
       backgroundColor = .lightRed
       foregroundColor = .black
@@ -56,7 +71,7 @@ class SuccessView: NSView {
     }
     
     //set up the layer
-    let rect = self.backgroundRect() //NSMakeRect(x, y, width, height)
+    let rect = self.backgroundRect
     let layer = CALayer()
     
     layer.backgroundColor = backgroundColor.cgColor
@@ -107,29 +122,15 @@ class SuccessView: NSView {
       layer.addSublayer(title)
     }
     
-    let animation = CABasicAnimation.init(keyPath: "opacity")
-    animation.fromValue = 0.0
-    animation.toValue = 1.0
-    animation.duration = 0.15
-    
-    layer.add(animation, forKey: "opacity")
+    layer.add(self.animation, forKey: "opacity")
     self.layer?.addSublayer(layer)
     
-    if oldSublayers != nil {
-      for layer in oldSublayers! {
+    if let oldSublayers = oldSublayers {
+      for layer in oldSublayers {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
           layer.removeFromSuperlayer()
         }
       }
     }
-  }
-  
-  func backgroundRect() -> NSRect {
-    return NSMakeRect(0.0, 0.0, self.frame.width, self.frame.height)
-  }
-  
-  func display(result: RollResult) {
-    self.result = result
-    self.needsDisplay = true
   }
 }
