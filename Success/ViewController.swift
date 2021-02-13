@@ -15,7 +15,7 @@ class ViewController: NSViewController {
   @IBOutlet weak var targetLabel: NSTextField!
   @IBOutlet weak var specializedCheckBox: NSButton!
   
-  var roller = Roller()
+  var roller = DiceBag()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -34,7 +34,7 @@ class ViewController: NSViewController {
   
   @IBAction func rollDice(_ sender: NSMatrix) {
     let pool = sender.selectedCell()!.tag
-    roller.roll(dice: pool)
+    roller.roll(pool: pool)
     
     updateDisplays()
   }
@@ -83,7 +83,7 @@ class ViewController: NSViewController {
   }
   
   func updateDisplays() {
-    rollView.display(roller: roller)
+    rollView.display(diceBag: roller)
     successView.display(result: roller.result)
   }
 }

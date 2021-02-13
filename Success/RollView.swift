@@ -8,16 +8,94 @@
 import Cocoa
 
 class RollView: NSView {
-  let delayIncrement = 0.08
   
+  // MARK: Display Variables
+  let delayIncrement = 0.08
   let side: CGFloat = 35.0
   let spacing: CGFloat = 5.0
+  var totalUpdate = true // Determines whether to redraw entire view or just toggle specialty
   
+  // MARK: Data Variables
   var rolls: [Int] = []
-  var target: Int = 6
-  var specialized = false
-  var totalUpdate = true
+  var target = 6
+  var specialty = false
   var game: Game = .masquerade
+  
+  // MARK: - Specialized Setters
+  
+  /// Sets the `rolls`, `target`, and `specialty` instance variables. The view will then perform a full redraw.
+  ///
+  /// - Parameters:
+  ///     - rolls: The array of dice rolls.
+  ///     - target: The difficulty (Masquerade) or "X-again" target (Requiem).
+  ///     - specialty: Whether tens should be doubled. (Ignored if game type is Requiem.)
+  func set(rolls: [Int], target: Int, specialty: Bool) {
+    self.rolls = rolls
+    self.target = target
+    self.totalUpdate = true
+    self.specialty = specialty
+    self.needsDisplay = true
+  }
+  
+  /// Sets the roll `target` (difficulty or X-again) and performs a partial redraw.
+  ///
+  /// - Parameters:
+  ///     - target: The difficulty (Masquerade) or "X-again" target (Requiem).
+  func set(target: Int) {
+    self.target = target
+    self.totalUpdate = false
+    self.needsDisplay = true
+  }
+  
+  /// Sets whether a specialty applies to the roll.
+  ///
+  /// - Parameter specialty: `True` if tens should be doubled.
+  func set(specialty: Bool) {
+    self.totalUpdate = false
+    self.specialty = specialty
+    self.needsDisplay = true
+  }
+  
+  /// Removes all drawn dice results and displays a basic instructional message for the user.
+  private func drawInstructions() {
+    self.layer?.sublayers = nil
+    
+    let instructions = "Click a dice pool on\nthe left to begin" as NSString
+    let style: NSMutableParagraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
+    style.alignment = NSTextAlignment.center
+    let font = NSFont.boldSystemFont(ofSize: 18)
+    let attributes = [ NSAttributedString.Key.font: font,
+                       NSAttributedString.Key.foregroundColor: NSColor.systemGray,
+                       NSAttributedString.Key.paragraphStyle: style ]
+    let drawHeight = instructions.size(withAttributes: attributes).height
+    let y: CGFloat = (self.frame.height - drawHeight) / 2 + 20
+    let rect = NSMakeRect(0.0, y, self.frame.width, drawHeight)
+    
+    instructions.draw(in: rect, withAttributes: attributes)
+  }
+  
+  //MARK: - Display Handlers
+  
+  /// Updates the display based on the `diceBag` contents.
+  ///
+  /// - Parameter diceBag: The new or modified roll to display.
+  func display(diceBag: DiceBag) {
+    game = diceBag.game
+    //need to see what we need to update
+    if self.rolls == diceBag.dice {
+      if diceBag.target == self.target {
+        self.set(specialty: diceBag.specialized)
+      }
+      else {
+        if diceBag.game == .masquerade {
+          self.set(target: diceBag.target)
+        }
+      }
+    }
+    else {
+      self.set(rolls: diceBag.dice, target: diceBag.target, specialty: diceBag.specialized)
+    }
+  }
   
   override func draw(_ dirtyRect: NSRect) {
     super.draw(dirtyRect)
@@ -48,7 +126,7 @@ class RollView: NSView {
           foregroundColor = .black
           backgroundColor = .lightGreen
           
-          if specialized && roll == 10 {
+          if specialty && roll == 10 {
             foregroundColor = .white
             backgroundColor = .systemGreen
           }
@@ -120,66 +198,6 @@ class RollView: NSView {
         x = 0.0
         y -= side + spacing
       }
-    }
-  }
-  
-  func set(roller: Roller) {
-    self.set(rolls: roller.rolls, target: roller.target, specialized: roller.specialized)
-  }
-  
-  func set(rolls: [Int], target: Int, specialized: Bool) {
-    self.rolls = rolls
-    self.target = target
-    self.totalUpdate = true
-    self.specialized = specialized
-    self.needsDisplay = true
-  }
-  
-  func set(target: Int) {
-    self.target = target
-    self.totalUpdate = false
-    self.needsDisplay = true
-  }
-  
-  func set(specialized: Bool) {
-    self.totalUpdate = false
-    self.specialized = specialized
-    self.needsDisplay = true
-  }
-  
-  func drawInstructions() {
-    self.layer?.sublayers = nil
-    
-    let instructions = "Click a dice pool on\nthe left to begin" as NSString
-    let style: NSMutableParagraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
-    style.alignment = NSTextAlignment.center
-    let font = NSFont.boldSystemFont(ofSize: 18)
-    let attributes = [ NSAttributedString.Key.font: font,
-                       NSAttributedString.Key.foregroundColor: NSColor.systemGray,
-                       NSAttributedString.Key.paragraphStyle: style ]
-    let drawHeight = instructions.size(withAttributes: attributes).height
-    let y: CGFloat = (self.frame.height - drawHeight) / 2 + 20
-    let rect = NSMakeRect(0.0, y, self.frame.width, drawHeight)
-    
-    instructions.draw(in: rect, withAttributes: attributes)
-  }
-  
-  //delegate methods
-  func display(roller: Roller) {
-    game = roller.game
-    //need to see what we need to update
-    if self.rolls == roller.rolls {
-      if roller.target == self.target {
-        self.set(specialized: roller.specialized)
-      }
-      else {
-        if roller.game == .masquerade {
-          self.set(target: roller.target)
-        }
-      }
-    }
-    else {
-      self.set(roller: roller)
     }
   }
 }
