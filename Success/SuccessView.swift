@@ -8,7 +8,7 @@
 import Cocoa
 
 class SuccessView: NSView {
-  var successes = -2
+  var result: Roll = .none
   
   override func draw(_ dirtyRect: NSRect) {
     super.draw(dirtyRect)
@@ -19,35 +19,45 @@ class SuccessView: NSView {
     var backgroundColor = NSColor.lightGray
     var foregroundColor = NSColor.systemGray
     var string = "-"
+    let successes: Int
+    var noRoll = false
     
-    if self.successes != -2 {
-      string = "\(self.successes)"
-    }
-    
-    switch self.successes {
-    case -1:
-      backgroundColor = .black
-      foregroundColor = .systemRed
-      string = "B"
-    case 0:
+    switch result {
+    case .botch(let severity):
+      string = "\(severity)"
+      successes = severity
+      backgroundColor = .systemRed
+      foregroundColor = .white
+    case .failure:
+      //string = "0"
+      successes = 0
       backgroundColor = .lightRed
       foregroundColor = .black
-    case 1:
-      backgroundColor = .systemOrange
-      foregroundColor = .white
-    case 2:
-      backgroundColor = .systemYellow
-      foregroundColor = .black
-    case 3:
-      backgroundColor = .lightGreen
-      foregroundColor = .black
-    case 4:
-      backgroundColor = .systemGreen
-      foregroundColor = .white
-    case 5...100:
-      backgroundColor = .systemBlue
-      foregroundColor = .white
-    default:
+    case .success(let suxx):
+      string = "\(suxx)"
+      successes = suxx
+      switch successes {
+      case 1:
+        backgroundColor = .systemOrange
+        foregroundColor = .white
+      case 2:
+        backgroundColor = .systemYellow
+        foregroundColor = .black
+      case 3:
+        backgroundColor = .lightGreen
+        foregroundColor = .black
+      case 4:
+        backgroundColor = .systemGreen
+        foregroundColor = .white
+      case 5...100:
+        backgroundColor = .systemBlue
+        foregroundColor = .white
+      default:
+        break
+      }
+    case .none:
+      successes = -100
+      noRoll = true
       break
     }
     
@@ -71,16 +81,25 @@ class SuccessView: NSView {
     successesLabel.foregroundColor = foregroundColor.cgColor
     
     let successesHeight = string.size(withAttributes: [ NSAttributedString.Key.font: font ]).height
-    let delta: CGFloat = self.successes < 0 ? 0 : 14
+    let delta: CGFloat = noRoll ? 0 : 14
     let stringRect = NSMakeRect(rect.origin.x, rect.origin.y - (rect.height - successesHeight) / 2 + delta, rect.width, rect.height)
     
     successesLabel.frame = stringRect
     
     layer.addSublayer(successesLabel)
     
-    if self.successes >= 0 {
+    if !noRoll {
       let title = CATextLayer()
-      title.string = self.successes == 1 ? "SUCCESS" : "SUCCESSES"
+      
+      switch successes {
+      case 1...:
+        title.string = successes == 1 ? "SUCCESS" : "SUCCESSES"
+      case 0:
+        title.string = "FAILURE"
+      default:
+        title.string = "BOTCH"
+      }
+      
       title.font = font
       title.fontSize = 18
       
@@ -115,8 +134,8 @@ class SuccessView: NSView {
     return NSMakeRect(0.0, 0.0, self.frame.width, self.frame.height)
   }
   
-  func display(successes: Int) {
-    self.successes = successes
+  func display(result: Roll) {
+    self.result = result
     self.needsDisplay = true
   }
 }

@@ -3,7 +3,6 @@
 //  Success
 //
 //  Created by Jared Lindsay on 2/6/21.
-//  Copyright © 2021 Baciarini's Martial Arts Inc. All rights reserved.
 //
 
 import Cocoa

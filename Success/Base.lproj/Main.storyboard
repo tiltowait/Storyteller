@@ -690,7 +690,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Masquerade" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Masquerade" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="MasqueradeWindow" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="550" y="452" width="605" height="200"/>
@@ -848,11 +848,12 @@
                                 </textFieldCell>
                             </textField>
                             <button toolTip="Set whether the roll is specialized" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H8b-gd-aGJ">
-                                <rect key="frame" x="478" y="19" width="82" height="18"/>
+                                <rect key="frame" x="478" y="19" width="93" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Specialty" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="o6j-GR-nX8">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent">s</string>
                                 </buttonCell>
                                 <connections>
                                     <action selector="toggleSpecialized:" target="XfG-lQ-9wD" id="qHU-dk-5wH"/>

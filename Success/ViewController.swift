@@ -84,6 +84,6 @@ class ViewController: NSViewController {
   
   func updateDisplays() {
     rollView.display(roller: roller)
-    successView.display(successes: roller.successes)
+    successView.display(result: roller.result)
   }
 }

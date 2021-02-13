@@ -32,6 +32,34 @@ class Roller: NSObject {
     }
   }
   
+  var result: Roll {
+    if rolls.isEmpty { return .none }
+    
+    let target = game == .masquerade ? self.target : 8
+    var successes = rolls.filter { $0 >= target }.count
+    
+    switch game {
+    case .masquerade:
+      let botches = rolls.filter { $0 == 1 }.count
+      if specialized {
+        successes += rolls.filter { $0 == 10 }.count
+      }
+      
+      if successes == 0 && botches > 0 {
+        return .botch(-botches)
+      } else if successes - botches <= 0 {
+        return .failure
+      } else {
+        return .success(successes - botches)
+      }
+    case .requiem:
+      if successes > 0 {
+        return .success(successes)
+      }
+      return .failure
+    }
+  }
+  
   var successes: Int {
     if rolls.count == 0 {
       return -2
