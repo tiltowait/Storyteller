@@ -24,7 +24,7 @@
 		126A79C01DC82F760003A2AD /* SuccessView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
 		2823642825CFCD8A00F45BED /* RollResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollResult.swift; sourceTree = "<group>"; };
 		28C06D6125CFC64700D1E907 /* NSColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSColor+.swift"; sourceTree = "<group>"; };
-		D123DA611DC3F2A400499622 /* Success.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Success.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D123DA611DC3F2A400499622 /* Storyteller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Storyteller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D123DA641DC3F2A400499622 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D123DA661DC3F2A400499622 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D123DA681DC3F2A400499622 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -54,7 +54,7 @@
 		D123DA621DC3F2A400499622 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D123DA611DC3F2A400499622 /* Success.app */,
+				D123DA611DC3F2A400499622 /* Storyteller.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -79,9 +79,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D123DA601DC3F2A300499622 /* Success */ = {
+		D123DA601DC3F2A300499622 /* Storyteller */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D123DA861DC3F2A400499622 /* Build configuration list for PBXNativeTarget "Success" */;
+			buildConfigurationList = D123DA861DC3F2A400499622 /* Build configuration list for PBXNativeTarget "Storyteller" */;
 			buildPhases = (
 				D123DA5D1DC3F2A300499622 /* Sources */,
 				D123DA5E1DC3F2A300499622 /* Frameworks */,
@@ -91,9 +91,9 @@
 			);
 			dependencies = (
 			);
-			name = Success;
+			name = Storyteller;
 			productName = Success;
-			productReference = D123DA611DC3F2A400499622 /* Success.app */;
+			productReference = D123DA611DC3F2A400499622 /* Storyteller.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -114,7 +114,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D123DA5C1DC3F2A300499622 /* Build configuration list for PBXProject "Success" */;
+			buildConfigurationList = D123DA5C1DC3F2A300499622 /* Build configuration list for PBXProject "Storyteller" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -127,7 +127,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D123DA601DC3F2A300499622 /* Success */,
+				D123DA601DC3F2A300499622 /* Storyteller */,
 			);
 		};
 /* End PBXProject section */
@@ -322,7 +322,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D123DA5C1DC3F2A300499622 /* Build configuration list for PBXProject "Success" */ = {
+		D123DA5C1DC3F2A300499622 /* Build configuration list for PBXProject "Storyteller" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D123DA841DC3F2A400499622 /* Debug */,
@@ -331,7 +331,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D123DA861DC3F2A400499622 /* Build configuration list for PBXNativeTarget "Success" */ = {
+		D123DA861DC3F2A400499622 /* Build configuration list for PBXNativeTarget "Storyteller" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D123DA871DC3F2A400499622 /* Debug */,
