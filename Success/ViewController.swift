@@ -20,7 +20,7 @@ class ViewController: NSViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    // Do any additional setup after loading the view.
+    // If the user changes game, we need to reset the app state, targets, etc.
     NotificationCenter.default.addObserver(self, selector: #selector(changeGame(_:)), name: NSNotification.Name(rawValue: "ChangeGame"), object: nil)
   }
   
@@ -32,6 +32,9 @@ class ViewController: NSViewController {
     }
   }
   
+  /// Rolls the dice and updates the roll and success views.
+  ///
+  /// - Parameter sender: An NSMatrix of buttons, where the tag of the `selectedCell` determines the size of the dice pool.
   @IBAction func rollDice(_ sender: NSMatrix) {
     let pool = sender.selectedCell()!.tag
     diceBag.roll(pool: pool)
@@ -39,14 +42,14 @@ class ViewController: NSViewController {
     updateDisplays()
   }
   
+  /// Changes the game type between Masquerade and Requiem. Resets the app state to fresh launch with the game's parameters set.
+  /// This function is only called via the notification center.
+  ///
+  /// - Parameter notification: The `Notification` containing game information
   @objc func changeGame(_ notification: Notification) {
     let info = notification.userInfo as! [String: Game]
     let game = info["Game"]!
     
-    change(game: game)
-  }
-  
-  func change(game: Game) {
     diceBag.game = game
     switch game {
     case .masquerade:
@@ -57,7 +60,7 @@ class ViewController: NSViewController {
       diceBag.target = 6
       specializedCheckBox.isEnabled = true
       
-      self.view.window?.title = "Masquerade"
+      self.view.window?.title = game.rawValue
     case .requiem:
       slider.minValue = 8
       slider.numberOfTickMarks = 3
@@ -66,22 +69,27 @@ class ViewController: NSViewController {
       diceBag.target = 10
       specializedCheckBox.isEnabled = false
       
-      self.view.window?.title = "Requiem"
+      self.view.window?.title = game.rawValue
     }
     updateDisplays()
   }
   
+  /// Changes the `target`, whether that is difficulty or X-again, and updates the roll and success views.
+  ///
+  /// - Parameter sender: The slider that controls the target.
   @IBAction func changeTarget(_ sender: NSSlider) {
     diceBag.target = sender.integerValue
     targetLabel.integerValue = sender.integerValue
     updateDisplays()
   }
   
+  /// Toggles the specialty checkbox and updates roll and success views.
   @IBAction func toggleSpecialized(_ sender: NSButton) {
     diceBag.specialized.toggle()
     updateDisplays()
   }
   
+  /// Causes the roll and success views to display their new data.
   func updateDisplays() {
     rollView.display(diceBag: diceBag)
     successView.result = diceBag.result
