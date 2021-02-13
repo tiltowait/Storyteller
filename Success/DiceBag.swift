@@ -35,7 +35,7 @@ class DiceBag {
     }
   }
   
-  var result: Roll {
+  var result: RollResult {
     if dice.isEmpty { return .none }
     
     let target = game == .masquerade ? self.target : 8

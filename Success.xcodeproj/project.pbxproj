@@ -10,7 +10,7 @@
 		12056A701DC985C30090961D /* DiceBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12056A6F1DC985C30090961D /* DiceBag.swift */; };
 		12210BBA1DC7E0ED0010C4B3 /* RollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12210BB91DC7E0ED0010C4B3 /* RollView.swift */; };
 		126A79C11DC82F760003A2AD /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126A79C01DC82F760003A2AD /* SuccessView.swift */; };
-		2823642925CFCD8A00F45BED /* Roll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2823642825CFCD8A00F45BED /* Roll.swift */; };
+		2823642925CFCD8A00F45BED /* RollResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2823642825CFCD8A00F45BED /* RollResult.swift */; };
 		28C06D6225CFC64700D1E907 /* NSColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C06D6125CFC64700D1E907 /* NSColor+.swift */; };
 		D123DA651DC3F2A400499622 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D123DA641DC3F2A400499622 /* AppDelegate.swift */; };
 		D123DA671DC3F2A400499622 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D123DA661DC3F2A400499622 /* ViewController.swift */; };
@@ -22,7 +22,7 @@
 		12056A6F1DC985C30090961D /* DiceBag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiceBag.swift; sourceTree = "<group>"; };
 		12210BB91DC7E0ED0010C4B3 /* RollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RollView.swift; sourceTree = "<group>"; };
 		126A79C01DC82F760003A2AD /* SuccessView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
-		2823642825CFCD8A00F45BED /* Roll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roll.swift; sourceTree = "<group>"; };
+		2823642825CFCD8A00F45BED /* RollResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollResult.swift; sourceTree = "<group>"; };
 		28C06D6125CFC64700D1E907 /* NSColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSColor+.swift"; sourceTree = "<group>"; };
 		D123DA611DC3F2A400499622 /* Success.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Success.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D123DA641DC3F2A400499622 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 				D123DA641DC3F2A400499622 /* AppDelegate.swift */,
 				D123DA661DC3F2A400499622 /* ViewController.swift */,
 				126A79C01DC82F760003A2AD /* SuccessView.swift */,
-				2823642825CFCD8A00F45BED /* Roll.swift */,
+				2823642825CFCD8A00F45BED /* RollResult.swift */,
 				12056A6F1DC985C30090961D /* DiceBag.swift */,
 				D123DA681DC3F2A400499622 /* Assets.xcassets */,
 				28C06D6125CFC64700D1E907 /* NSColor+.swift */,
@@ -150,7 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				126A79C11DC82F760003A2AD /* SuccessView.swift in Sources */,
-				2823642925CFCD8A00F45BED /* Roll.swift in Sources */,
+				2823642925CFCD8A00F45BED /* RollResult.swift in Sources */,
 				28C06D6225CFC64700D1E907 /* NSColor+.swift in Sources */,
 				12056A701DC985C30090961D /* DiceBag.swift in Sources */,
 				12210BBA1DC7E0ED0010C4B3 /* RollView.swift in Sources */,

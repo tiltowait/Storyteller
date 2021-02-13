@@ -8,7 +8,7 @@
 import Cocoa
 
 class SuccessView: NSView {
-  var result: Roll = .none
+  var result: RollResult = .none
   
   override func draw(_ dirtyRect: NSRect) {
     super.draw(dirtyRect)
@@ -134,7 +134,7 @@ class SuccessView: NSView {
     return NSMakeRect(0.0, 0.0, self.frame.width, self.frame.height)
   }
   
-  func display(result: Roll) {
+  func display(result: RollResult) {
     self.result = result
     self.needsDisplay = true
   }

@@ -1,11 +1,11 @@
 //
-//  Roll.swift
+//  RollResult.swift
 //  Success
 //
 //  Created by Jared Lindsay on 2/6/21.
 //
 
-enum Roll {
+enum RollResult {
   case botch(Int)
   case failure
   case success(Int)
