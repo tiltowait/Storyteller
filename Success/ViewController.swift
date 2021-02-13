@@ -15,7 +15,7 @@ class ViewController: NSViewController {
   @IBOutlet weak var targetLabel: NSTextField!
   @IBOutlet weak var specializedCheckBox: NSButton!
   
-  var roller = DiceBag()
+  var diceBag = DiceBag()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -34,7 +34,7 @@ class ViewController: NSViewController {
   
   @IBAction func rollDice(_ sender: NSMatrix) {
     let pool = sender.selectedCell()!.tag
-    roller.roll(pool: pool)
+    diceBag.roll(pool: pool)
     
     updateDisplays()
   }
@@ -47,14 +47,14 @@ class ViewController: NSViewController {
   }
   
   func change(game: Game) {
-    roller.game = game
+    diceBag.game = game
     switch game {
     case .masquerade:
       slider.minValue = 2.0
       slider.numberOfTickMarks = 9
       slider.integerValue = 6
       targetLabel.stringValue = "6"
-      roller.target = 6
+      diceBag.target = 6
       specializedCheckBox.isEnabled = true
       
       self.view.window?.title = "Masquerade"
@@ -63,7 +63,7 @@ class ViewController: NSViewController {
       slider.numberOfTickMarks = 3
       slider.integerValue = 10
       targetLabel.stringValue = "10"
-      roller.target = 10
+      diceBag.target = 10
       specializedCheckBox.isEnabled = false
       
       self.view.window?.title = "Requiem"
@@ -72,18 +72,18 @@ class ViewController: NSViewController {
   }
   
   @IBAction func changeTarget(_ sender: NSSlider) {
-    roller.target = sender.integerValue
+    diceBag.target = sender.integerValue
     targetLabel.integerValue = sender.integerValue
     updateDisplays()
   }
   
   @IBAction func toggleSpecialized(_ sender: NSButton) {
-    roller.specialized.toggle()
+    diceBag.specialized.toggle()
     updateDisplays()
   }
   
   func updateDisplays() {
-    rollView.display(diceBag: roller)
-    successView.display(result: roller.result)
+    rollView.display(diceBag: diceBag)
+    successView.display(result: diceBag.result)
   }
 }
