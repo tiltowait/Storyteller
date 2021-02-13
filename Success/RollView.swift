@@ -15,8 +15,19 @@ class RollView: NSView {
   let spacing: CGFloat = 5.0
   var totalUpdate = true // Determines whether to redraw entire view or just toggle specialty
   
+  lazy var animation: CABasicAnimation = {
+    let animation = CABasicAnimation(keyPath: "opacity")
+    animation.fromValue = 0.0
+    animation.toValue = 1.0
+    animation.duration = 0.25
+    animation.isRemovedOnCompletion = false
+    animation.fillMode = .forwards
+    
+    return animation
+  }()
+  
   // MARK: Data Variables
-  var rolls: [Int] = []
+  var dice: [Int] = []
   var target = 6
   var specialty = false
   var game: Game = .masquerade
@@ -30,7 +41,7 @@ class RollView: NSView {
   ///     - target: The difficulty (Masquerade) or "X-again" target (Requiem).
   ///     - specialty: Whether tens should be doubled. (Ignored if game type is Requiem.)
   func set(rolls: [Int], target: Int, specialty: Bool) {
-    self.rolls = rolls
+    self.dice = rolls
     self.target = target
     self.totalUpdate = true
     self.specialty = specialty
@@ -82,7 +93,7 @@ class RollView: NSView {
   func display(diceBag: DiceBag) {
     game = diceBag.game
     //need to see what we need to update
-    if self.rolls == diceBag.dice {
+    if self.dice == diceBag.dice {
       if diceBag.target == self.target {
         self.set(specialty: diceBag.specialized)
       }
@@ -101,7 +112,7 @@ class RollView: NSView {
     super.draw(dirtyRect)
     
     // Drawing code here.
-    if self.rolls.count == 0 { //give some instructions if we haven't rolled anything
+    if self.dice.isEmpty { //give some instructions if we haven't rolled anything
       drawInstructions()
       return
     }
@@ -112,13 +123,14 @@ class RollView: NSView {
     var y: CGFloat = self.frame.height - side
     var delay = CACurrentMediaTime()
     
-    for roll in self.rolls {
+    for die in self.dice {
       //calculate the colors
       var foregroundColor: NSColor
       var backgroundColor: NSColor
       
-      if game == .masquerade {
-        switch roll {
+      switch game {
+      case .masquerade:
+        switch die {
         case 1:
           foregroundColor = .white
           backgroundColor = .systemRed
@@ -126,7 +138,7 @@ class RollView: NSView {
           foregroundColor = .black
           backgroundColor = .lightGreen
           
-          if specialty && roll == 10 {
+          if specialty && die == 10 {
             foregroundColor = .white
             backgroundColor = .systemGreen
           }
@@ -134,8 +146,8 @@ class RollView: NSView {
           foregroundColor = .black
           backgroundColor = .lightGray
         }
-      } else {
-        switch roll {
+      case .requiem:
+        switch die {
         case 1..<8:
           foregroundColor = .black
           backgroundColor = .lightGray
@@ -159,39 +171,33 @@ class RollView: NSView {
       //create the label
       let label = CATextLayer()
       let font = NSFont.boldSystemFont(ofSize: 18)
-      let rollString = "\(roll)"
+      let dieString = "\(die)"
       
       label.contentsScale = NSScreen.main!.backingScaleFactor
       
-      label.string = rollString
+      label.string = dieString
       label.foregroundColor = foregroundColor.cgColor
       label.font = font
       label.fontSize = 18
       label.alignmentMode = .center
       
       //calculate vertical center
-      let labelHeight = rollString.size(withAttributes: [ NSAttributedString.Key.font: font ]).height
+      let labelHeight = dieString.size(withAttributes: [ NSAttributedString.Key.font: font ]).height
       let labelRect = NSMakeRect(0, 0 - ((self.side - labelHeight) / 2), self.side, self.side)
       
       label.frame = labelRect
       layer.addSublayer(label)
       
-      //create the animation
+      //Perform a nice one-by-one fade-in if we're doing a full redraw
       if self.totalUpdate {
-        let animation = CABasicAnimation.init(keyPath: "opacity")
-        animation.fromValue = 0.0
-        animation.toValue = 1.0
-        animation.duration = 0.25
-        animation.isRemovedOnCompletion = false
-        animation.fillMode = .forwards
-        animation.beginTime = delay
-        
+        self.animation.beginTime = delay
         layer.opacity = 0.0
-        layer.add(animation, forKey: "opacity")
+        layer.add(self.animation, forKey: "opacity")
       }
       
       self.layer?.addSublayer(layer)
       
+      // Establish the origin and animation delay for the next roll
       x += side + spacing
       delay += delayIncrement
       if x + side > self.frame.width {
