@@ -20,4 +20,16 @@ extension NSColor {
   static var lightRed: NSColor {
     NSColor(named: "LightRed")!
   }
+  
+  static var marginalSuccess: NSColor {
+    NSColor.lightGreen
+  }
+  
+  static var fullSuccess: NSColor {
+    NSColor(named: "Full Success")!
+  }
+  
+  static var exceptionalSuccess: NSColor {
+    NSColor.systemGreen
+  }
 }

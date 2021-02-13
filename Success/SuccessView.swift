@@ -37,20 +37,14 @@ class SuccessView: NSView {
       string = "\(suxx)"
       successes = suxx
       switch successes {
-      case 1:
-        backgroundColor = .systemOrange
-        foregroundColor = .white
-      case 2:
-        backgroundColor = .systemYellow
+      case 1...2:
+        backgroundColor = .marginalSuccess
         foregroundColor = .black
-      case 3:
-        backgroundColor = .lightGreen
-        foregroundColor = .black
-      case 4:
-        backgroundColor = .systemGreen
+      case 3...4:
+        backgroundColor = .fullSuccess
         foregroundColor = .white
-      case 5...100:
-        backgroundColor = .systemBlue
+      case 5...:
+        backgroundColor = .exceptionalSuccess
         foregroundColor = .white
       default:
         break
