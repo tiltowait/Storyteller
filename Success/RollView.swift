@@ -9,12 +9,13 @@ import Cocoa
 
 class RollView: NSView {
   
-  // MARK: Display Variables
+  // MARK: Display Settings
   let delayIncrement = 0.08
   let side: CGFloat = 35.0
   let spacing: CGFloat = 5.0
-  var totalUpdate = true // Determines whether to redraw entire view or just toggle specialty
+  var fullRedraw = true // Determines whether to redraw entire view or just toggle specialty
   
+  /// A basic opacity animation that has a duration of 0.25s.
   lazy var animation: CABasicAnimation = {
     let animation = CABasicAnimation(keyPath: "opacity")
     animation.fromValue = 0.0
@@ -30,7 +31,7 @@ class RollView: NSView {
   var dice: [Int] = []
   var target = 6
   var specialty = false
-  var game: Game = .masquerade
+  var game = Game.masquerade
   
   // MARK: - Specialized Setters
   
@@ -43,7 +44,7 @@ class RollView: NSView {
   func set(rolls: [Int], target: Int, specialty: Bool) {
     self.dice = rolls
     self.target = target
-    self.totalUpdate = true
+    self.fullRedraw = true
     self.specialty = specialty
     self.needsDisplay = true
   }
@@ -54,7 +55,7 @@ class RollView: NSView {
   ///     - target: The difficulty (Masquerade) or "X-again" target (Requiem).
   func set(target: Int) {
     self.target = target
-    self.totalUpdate = false
+    self.fullRedraw = false
     self.needsDisplay = true
   }
   
@@ -62,7 +63,7 @@ class RollView: NSView {
   ///
   /// - Parameter specialty: `True` if tens should be doubled.
   func set(specialty: Bool) {
-    self.totalUpdate = false
+    self.fullRedraw = false
     self.specialty = specialty
     self.needsDisplay = true
   }
@@ -189,7 +190,7 @@ class RollView: NSView {
       layer.addSublayer(label)
       
       //Perform a nice one-by-one fade-in if we're doing a full redraw
-      if self.totalUpdate {
+      if self.fullRedraw {
         self.animation.beginTime = delay
         layer.opacity = 0.0
         layer.add(self.animation, forKey: "opacity")

@@ -14,6 +14,8 @@ class SuccessView: NSView {
       self.needsDisplay = true
     }
   }
+  
+  /// A basic opacity animation that lasts 0.15s.
   lazy var animation: CABasicAnimation = {
     let animation = CABasicAnimation(keyPath: "opacity")
     animation.fromValue = 0.0
@@ -22,6 +24,8 @@ class SuccessView: NSView {
     
     return animation
   }()
+  
+  /// The internal representation of the view's frame (origin 0,0).
   lazy var backgroundRect: NSRect = {
     NSMakeRect(0.0, 0.0, self.frame.width, self.frame.height)
   }()
@@ -29,8 +33,14 @@ class SuccessView: NSView {
   override func draw(_ dirtyRect: NSRect) {
     super.draw(dirtyRect)
     
-    // Drawing code here.
-    let oldSublayers = self.layer?.sublayers
+    // Remove the old sublayers after a small delay
+    if let oldSublayers = self.layer?.sublayers {
+      for layer in oldSublayers {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+          layer.removeFromSuperlayer()
+        }
+      }
+    }
     
     var backgroundColor = NSColor.lightGray
     var foregroundColor = NSColor.systemGray
@@ -65,7 +75,7 @@ class SuccessView: NSView {
         break
       }
     case .none:
-      successes = -100
+      successes = Int.min // This number never gets used, because noRoll will be set
       noRoll = true
       break
     }
@@ -124,13 +134,5 @@ class SuccessView: NSView {
     
     layer.add(self.animation, forKey: "opacity")
     self.layer?.addSublayer(layer)
-    
-    if let oldSublayers = oldSublayers {
-      for layer in oldSublayers {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-          layer.removeFromSuperlayer()
-        }
-      }
-    }
   }
 }
