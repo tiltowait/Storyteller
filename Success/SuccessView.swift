@@ -1,6 +1,6 @@
 //
 //  SuccessView.swift
-//  Success
+//  Storyteller
 //
 //  Created by Jared Lindsay on 10/31/16.
 //

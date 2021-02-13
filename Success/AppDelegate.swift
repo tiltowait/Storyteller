@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Success
+//  Storyteller
 //
 //  Created by Jared Lindsay on 10/28/16.
 //
