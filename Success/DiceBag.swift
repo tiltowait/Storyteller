@@ -62,33 +62,6 @@ class DiceBag {
       return .failure
     }
   }
-  
-  var successes: Int {
-    if dice.count == 0 {
-      return -2
-    }
-    let target = game == .masquerade ? self.target : 8
-    var successes = dice.filter { $0 >= target }.count
-    
-    if game == .masquerade {
-      let failures = dice.filter { $0 == 1 }.count
-      successes -= failures
-      
-      if specialized {
-        let tens = dice.filter { $0 == 10 }.count
-        successes += tens
-      }
-      
-      if successes <= 0 {
-        if successes == 0 {
-          successes = -1
-        } else {
-          successes = 0
-        }
-      }
-    }
-    return successes
-  }
 }
 
 enum Game: String {
