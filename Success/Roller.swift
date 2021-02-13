@@ -7,7 +7,7 @@
 
 import Cocoa
 
-class Roller: NSObject {
+class Roller {
   private(set) var rolls: [Int] = []
   var specialized = true
   var target = 6
